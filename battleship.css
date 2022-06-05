@@ -2,38 +2,50 @@ body {
 
 }
 
-container {
-
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid black;
 }
 
 header {
+  border: 3px solid rgb(230, 3, 3);
 
 }
 
-container-main {
+.container-main {
+  border: 3px solid rgb(47, 5, 214);
 
 }
 
-game-boards {
+.game-boards {
+  display: flex;
+  border: 3px solid rgb(8, 198, 62);
 
 }
 
-player-board {
+.player-board {
+  border: 1px solid rgb(10, 98, 142);
 
 }
 
-computer-board {
+.computer-board {
+  border: 1px solid rgb(17, 173, 197);
 
 }
 
 footer {
+  display: flex;
+  border: 3px solid black;
 
 }
 
-copyright {
+.copyright {
+  border: 1px solid rgb(199, 8, 206);
 
 }
 
-info-link {
-  
+.info-link {
+  border: 1px solid rgb(178, 5, 135);
+
 }
