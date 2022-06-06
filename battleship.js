@@ -38,25 +38,26 @@ var boardSelection = [
                 ["x","x","x","x","x","x","x","x","x","x"]             
               ];
 
-// generates random numbers for row and column on gameboard
-// generates number 0-9
+// ================ Randomizer Functions ================
+//creates random row number
 var randomRow = () => {
   row = Math.floor(Math.random() * 10);
   return row;
 }
+// creates random column number
 var randomColumn = () => {
   column = Math.floor(Math.random() * 10);
   return column;
 }
-
+// Randomly determines if ship will be verticle or horizontal
 var randomVert = () => {
   random = Math.floor(Math.random() * 2);
   return random;
 }
 
 
+// Checks to see if ship can fit on board.
 var checkBoard = (ship) => {
-  // check board if randomly generated ship fits board
   for (var i = 0; i < ship.length; i++) {
     for (var j = 0; j < gameBoard.length; j++) {
       for (var k = 0; k < gameBoard[j].length; k++) {
@@ -66,52 +67,50 @@ var checkBoard = (ship) => {
       }
     }
   }
+  //if ship fits, return true
   return true; 
 }
-  //checks to see in random numbers are in bounds for ship
-  var inBounds = (shipLength, row, column, vert) => {
-    var rightBoundary = 10;
-    var bottomBoundary = 10;
 
-    if (vert == 0){
-      if (grid[row][column] + shipLength > rightBoundary) {
-        return false;
-      }else {
-        return true; 
-      }
+//checks to see in random numbers are in bounds for ship
+var inBounds = (shipLength, row, column, vert) => {
+  var rightBoundary = 10;
+  var bottomBoundary = 10;
+
+  if (vert == 0){
+    if (grid[row][column] + shipLength > rightBoundary) {
+      return false;
+    }else {
+      return true; 
+    }
+  } else {
+    if (grid[row + shipLength] == undefined) {
+      return false;
     } else {
-      if (grid[row + shipLength] == undefined) {
-        return false;
-      } else {
-        return true;
-      }
+      return true;
     }
-   
-  }
-
-  //creates verticle ship
-  var createVertShip = (shipLength, row, column) => {
-    var ship = [];
-    for (var i = 0; i < shipLength; i++) {
-      console.log(i)
-      ship.push(gameBoard[row+i][column]);
-    }
-
-    return ship;
-  }
-
-  //creates horizontal ship
-  var createHorizShip = (shipLength, row, column) => {
-    var ship = [];
-    for(var i = 0; i < shipLength; i++) {
-     ship.push(gameBoard[row][column+i]);
-    }
-
-    return ship;
   }
   
+}
 
-//Marks Board with ships
+//creates verticle ship
+var createVertShip = (shipLength, row, column) => {
+  var ship = [];
+  for (var i = 0; i < shipLength; i++) {
+    ship.push(gameBoard[row+i][column]);
+  }
+  return ship;
+}
+
+//creates horizontal ship
+var createHorizShip = (shipLength, row, column) => {
+  var ship = [];
+  for(var i = 0; i < shipLength; i++) {
+    ship.push(gameBoard[row][column+i]);
+  }
+  return ship;
+}
+  
+//Marks Board with 1's to show where ships are to be placed
 var markBoard = (ship) => {
   for(var i = 0; i < ship.length; i++) {
     for(var j = 0; j < gameBoard.length; j++) {
@@ -124,7 +123,6 @@ var markBoard = (ship) => {
   }
 }
 
-
 //============= Main Ship building function ================================
 //Calls other functions to make sure ship can be built
 var buildShip = (shipLength) => {
@@ -135,20 +133,17 @@ var buildShip = (shipLength) => {
     while(!isInBounds) {
       var row = randomRow();
       var column = randomColumn();
-      var vert = randomVert(); //====>>>>>>>>>>>>>>>>>>>>>>>>>>(REMOVE)
+      var vert = randomVert(); 
       isInBounds = inBounds(shipLength, row, column, vert)
     }
     var ship = []
     if (vert == 0) {
       ship = createHorizShip(shipLength, row, column);
-      console.log(ship)
     } else if (vert == 1) {
       ship = createVertShip(shipLength, row, column);
-      console.log(ship);
     }
   
     //stops loop if ship can be built at location
-    console.log(ship);
     shipAvailable = checkBoard(ship);
   }
   //places ships on board
@@ -156,7 +151,7 @@ var buildShip = (shipLength) => {
   return ship;
 }
 
-
+// Ship classes and sizes for game
 var battleShip = buildShip(5);
 var destroyer1 = buildShip(4);
 var destroyer2 = buildShip(4);
@@ -166,16 +161,13 @@ var patrolCoastal = buildShip(2)
 // Displays data of created ship on webpage
 var displayShip = (ship) => {
   for(var i = 0; i < ship.length; i++) {
-    document.getElementById(ship[i]).innerHTML = "*"
+    document.getElementById(ship[i]).innerHTML = "  "
   }
 }
 
+// Displays each ship on webpage
 displayShip(battleShip);
 displayShip(destroyer1);
 displayShip(destroyer2);
 displayShip(frigate);
 displayShip(patrolCoastal);
-
-//     // for (var i = 0; i < battleShip.length; i++) {
-//     //   playerShipLocations.push(battleShip[i]);
-//     //   document.getElementById(battleShip[i]).innerHTML = "--"
