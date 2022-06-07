@@ -25,7 +25,7 @@ var grid = [
   [0,1,2,3,4,5,6,7,8,9]        
 ];
 
-var boardSelection = [ 
+var cpuBoardSelection = [ 
   ["x","x","x","x","x","x","x","x","x","x"],
   ["x","x","x","x","x","x","x","x","x","x"],
   ["x","x","x","x","x","x","x","x","x","x"],
@@ -78,7 +78,7 @@ var checkBoard = (ship) => {
   for (var i = 0; i < ship.length; i++) {
     for (var j = 0; j < gameBoard.length; j++) {
       for (var k = 0; k < gameBoard[j].length; k++) {
-        if(ship[i] == gameBoard[j][k] && boardSelection[j][k] == 1) {
+        if(ship[i] == gameBoard[j][k] && cpuBoardSelection[j][k] == 1) {
           return false;
         }
       }
@@ -134,7 +134,7 @@ var markBoard = (ship) => {
     for(var j = 0; j < gameBoard.length; j++) {
       for(var k = 0; k < gameBoard[j].length; k++) {
         if(ship[i] == gameBoard[j][k]) {
-          boardSelection[j][k] = 1;
+          cpuBoardSelection[j][k] = 1;
         }
       }
     }
@@ -169,31 +169,24 @@ var cpuBuildShip = (shipLength) => {
   return ship;
 }
 
-// Ship classes and sizes for game
-// var battleShip = cpuBuildShip(5);
-// var destroyer1 = cpuBuildShip(4);
-// var destroyer2 = cpuBuildShip(4);
-// var frigate = cpuBuildShip(3); 
-// var patrolCoastal = cpuBuildShip(2)
+// Displays data of CPU's created ship on webpage
+var cpuDisplayShip = (ship) => {
+  for(var i = 0; i < ship.length; i++) {
+    document.getElementById("A"+ship[i]).innerHTML =  "<div class='ship-select'></div>";
+  }
+}
 
-// Displays data of created ship on webpage
-var displayShip = (ship) => {
+// ========= Player Build Ship Functions =======================================
+
+// Displays data of CPU's created ship on webpage
+var playerDisplayShip = (ship) => {
   for(var i = 0; i < ship.length; i++) {
     document.getElementById(ship[i]).innerHTML =  "<div class='ship-select'></div>";
   }
 }
 
-// Displays each ship on webpage
-// displayShip(battleShip);
-// displayShip(destroyer1);
-// displayShip(destroyer2);
-// displayShip(frigate);
-// displayShip(patrolCoastal);
 
-
-// ========= Player Build Ship Functions =======================================
-
-//Marks Board with 1's to show where ships are to be placed ==========================>>>>>>>>>>CHECK
+//Marks Board with 1's to show where ships are to be placed
 var markPlayerBoard = (ship) => {
   for(var i = 0; i < ship.length; i++) {
     for(var j = 0; j < gameBoard.length; j++) {
@@ -207,7 +200,7 @@ var markPlayerBoard = (ship) => {
 }
 
 
-// Checks player's board ==========================>>>>>>>>>>CHECK
+// Checks player's board 
 var checkPlayerBoard = (ship) => {
   for (var i = 0; i < ship.length; i++) {
     for (var j = 0; j < gameBoard.length; j++) {
@@ -344,7 +337,7 @@ var clickTarget = (id) => {
   }
 
   //displays ship on board
-  displayShip(playerShip);
+  playerDisplayShip(playerShip);
 
   // lower ship count by one
   reduceShipCount();
@@ -397,11 +390,11 @@ var main = () => {
   var frigate = cpuBuildShip(3); 
   var patrolCoastal = cpuBuildShip(2);
 
-  displayShip(battleShip);
-  displayShip(destroyer1);
-  displayShip(destroyer2);
-  displayShip(frigate);
-  displayShip(patrolCoastal);
+  cpuDisplayShip(battleShip);
+  cpuDisplayShip(destroyer1);
+  cpuDisplayShip(destroyer2);
+  cpuDisplayShip(frigate);
+  cpuDisplayShip(patrolCoastal);
 
 
   alert("test");
