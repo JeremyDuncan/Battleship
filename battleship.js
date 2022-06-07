@@ -166,7 +166,7 @@ var cpuBuildShip = (shipLength) => {
 // Displays data of created ship on webpage
 var displayShip = (ship) => {
   for(var i = 0; i < ship.length; i++) {
-    document.getElementById(ship[i]).innerHTML =  "<div class='ship'></div>";
+    document.getElementById(ship[i]).innerHTML =  "<div class='ship-select'></div>";
   }
 }
 
@@ -313,6 +313,7 @@ var clickTarget = (id) => {
 
 //========== Visual mouseover functions ========================================
 var hoverA = (cell) => {
+
   console.log(cell);
   if(!vert){
     for(var i = 0; i < shipSize; i++) {
