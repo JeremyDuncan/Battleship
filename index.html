@@ -12,17 +12,17 @@
 </head>
 <body>
   <div class="container">
-    <header>
+    <header id="header">
       <h1>Battleship</h1>
+      Welcome to Battleship!
     </header>
     <div class="container-main">
       <div class="message">
-        Welcome to Battleship!
       </div>
-      
+
       <div id="remove-on-start" class="selection">
         <div> 
-          Select Vertical or Horizontal
+          <strong>Select Vertical or Horizontal</strong>
         </div>
         <div onclick="turnVertical()" class="vertical-selection">
           Vertical
@@ -31,7 +31,7 @@
           Horizontal
         </div>
         <div>
-          Select your ship.
+         <strong>Select 4 ships to place on board.</strong> 
         </div>
         <div class="ship-selection">
           <div onclick="selectShip(3)" class="battleship">
@@ -44,7 +44,7 @@
             frigate
           </div>
           <div onclick="selectShip(3)" class="patrol-coastal">
-            patrol coastal ship
+            patrol ship
           </div>
         </div>
         <div class="start-game" onclick="clickStartGame()">

@@ -478,6 +478,7 @@ var clickStartGame = () => {
     gameStart = true;
     //clear the selection screen
     document.getElementById('remove-on-start').innerHTML =  "";
+    document.getElementById('header').innerHTML = "";
   
     //generates the CPU's ships on logical board
     var battleShip = cpuBuildShip(3);

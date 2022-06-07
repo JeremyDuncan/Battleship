@@ -1,5 +1,7 @@
 body {
-  color: rgb(14, 12, 12);
+  color: rgb(7, 31, 90);
+  background-color: darkgrey;
+  
 }
 
 .container {
@@ -15,6 +17,134 @@ header {
 }
 .message {
   text-align: center;
+}
+.game-boards {
+  justify-content: center;
+  gap: 50px;
+}
+.selection {
+  text-align: center;
+}
+.vertical-selection {
+  margin: auto;
+  width: 30%;
+  height: 30px;
+  color: white;
+  font-weight: bold;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: grey;
+  box-shadow: 2px 2px 2px 2px black
+
+}
+.vertical-selection:hover {
+  background-color: rgb(6, 94, 121);
+}
+.vertical-selection:active {
+  background-color: rgb(19, 17, 17);
+}
+.horizontal-selection {
+  margin: auto;
+  width: 30%;
+  height: 30px;
+  color: white;
+  font-weight: bold;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: grey;
+  box-shadow: 2px 2px 2px 2px black
+
+}
+.horizontal-selection:hover {
+  background-color: rgb(6, 94, 121);
+}
+.horizontal-selection:active {
+  background-color: rgb(19, 17, 17);
+}
+
+
+.battleship {
+  margin: auto;
+  width: 30%;
+  height: 25px;
+  color: white;
+  font-weight: bold;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: grey;
+  box-shadow: 2px 2px 2px 2px black
+
+}
+.destroyer {
+  margin: auto;
+  width: 30%;
+  height: 25px;
+  color: white;
+  font-weight: bold;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: grey;
+  box-shadow: 2px 2px 2px 2px black
+
+}
+.destroyer:hover {
+  background-color: rgb(6, 94, 121);
+}
+.destroyer:active {
+  background-color: rgb(19, 17, 17);
+}
+.frigate {
+  margin: auto;
+  width: 30%;
+  height: 25px;
+  color: white;
+  font-weight: bold;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: grey;
+  box-shadow: 2px 2px 2px 2px black
+
+}
+.frigate:hover {
+  background-color: rgb(6, 94, 121);
+}
+.frigate:active {
+  background-color: rgb(19, 17, 17);
+}
+.patrol-coastal {
+  margin: auto;
+  width: 30%;
+  height: 25px;
+  color: white;
+  font-weight: bold;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: grey;
+  box-shadow: 2px 2px 2px 2px black
+
+}
+.patrol-coastal:hover {
+  background-color: rgb(6, 94, 121);
+}
+.patrol-coastal:active {
+  background-color: rgb(19, 17, 17);
+}
+.start-game {
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  height: 30px;
+  color: white;
+  font-weight: bold;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: rgb(218, 12, 12);
+  box-shadow: 2px 2px 2px 2px black
+
 }
 .container-main {
   border: 3px solid rgb(47, 5, 214);
@@ -45,13 +175,24 @@ td {
 }
 
 .player-board {
-  border: 1px solid rgb(10, 98, 142);
-
+  border: 2px solid rgb(0, 0, 0);
+  color: rgb(151, 182, 219);
+  font-weight: bold;
+  font-size: 15px;
+  background-color: rgb(55, 69, 84);
+  border-radius:30px;
+  box-shadow: 4px 4px 4px 4px black;
 }
 
 .computer-board {
-  border: 1px solid rgb(17, 173, 197);
+  border: 2px solid rgb(0, 0, 0);
+  color: rgb(151, 182, 219);
+  font-weight: bold;
+  font-size: 15px;
 
+  background-color: rgb(55, 69, 84);
+  border-radius:30px;
+  box-shadow: 4px 4px 4px 4px black
 }
 
 footer {
@@ -92,7 +233,19 @@ footer {
  .square:hover{
   background-color: white;
 }
+.start-game:hover {
+  background-color: rgb(6, 94, 121);
+}
+.start-game:active {
+  background-color: rgb(19, 17, 17);
+}
 
+.battleship:hover {
+  background-color: rgb(6, 94, 121);
+}
+.battleship:active {
+  background-color: rgb(19, 17, 17);
+}
 /* ==== Responsive CSS Styles ==== */
 @media (max-width: 550px) {
   .game-boards {
@@ -102,28 +255,31 @@ footer {
     font-size: 10px;
     padding: 0px;
     margin: 0px;
-    width: 10px;
-    height: 10px;
+    width: 0px;
+    height: 0px;
   }
   td {
     padding: 0px;
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
   }
   .ship {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
   }
   .ship-select {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
   }
   .ship-hit {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
   }
   .ship-miss {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
+  }
+  .game-boards {
+    gap: 5px;
   }
 }
