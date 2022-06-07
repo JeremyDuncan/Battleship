@@ -53,6 +53,19 @@ var playerBoardSelection = [
   ["x","x","x","x","x","x","x","x","x","x"]             
 ];
 
+var attackLog = [ 
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"]             
+];
+
 
 // ================ Randomizer Functions =======================================
 //creates random row number
@@ -316,8 +329,16 @@ var checkIfDirectHit = (id) => {
 
 // Randomized CPU Attack after Player attacks.
 var cpuAttack = () => {
-  var row = randomRow();
-  var column = randomColumn();
+  var continueAttack = true;
+  while(continueAttack){
+    var row = randomRow();
+    var column = randomColumn();
+    if(attackLog[row][column] == "x"){
+      continueAttack = false;
+    }
+  }
+
+  attackLog[row][column] = 0;
   var attackVector = gameBoard[row][column];
   for(var i = 0; i <gameBoard.length; i++) {
     for(var j = 0; j < gameBoard[i].length; j++){
@@ -325,8 +346,6 @@ var cpuAttack = () => {
         playerBoardSelection[i][j] = 0;
         document.getElementById(attackVector).innerHTML = "<div class='ship-hit'></div>";
         return true;
-      } else if (attackVector == gameBoard[i][j] && playerBoardSelection[i][j] == 0){
-        alert("You already hit here!!!");
       } else {
         document.getElementById(attackVector).innerHTML = "<div class='ship-miss'></div>";
       }
@@ -351,7 +370,7 @@ var clickCpuBoard = (id) => {
       playerHits += 1;
     }
    
-    if (playerHits >= 12) {
+    if (playerHits >= 15) {
       alert("gameover, You WIN!");
     }
 
@@ -360,6 +379,10 @@ var clickCpuBoard = (id) => {
 
     if(cpuDirectHit) {
       cpuHits += 1;
+    }
+
+    if(cpuHits >= 15) {
+      alert("YOU LOSE!!")
     }
   } else {
     alert("Game has not started")
