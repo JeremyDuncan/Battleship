@@ -1,3 +1,5 @@
+var gameStart = false;
+
 // =========== arrays to represent gameboard====================================
 var gameBoard = [ 
   [0,1,2,3,4,5,6,7,8,9],
@@ -50,7 +52,8 @@ var playerBoardSelection = [
   ["x","x","x","x","x","x","x","x","x","x"],
   ["x","x","x","x","x","x","x","x","x","x"]             
 ];
-var gameStart = false;
+
+
 // ================ Randomizer Functions =======================================
 //creates random row number
 var randomRow = () => {
@@ -71,6 +74,7 @@ var randomVert = () => {
     return true
   }
 }
+
 
 //========= Validation Functions ===============================================
 // Checks to see if ship can fit on board.
@@ -109,6 +113,7 @@ var inBounds = (shipLength, row, column, vert) => {
   
 }
 
+
 //================= Ship Creation Functions ====================================
 //creates verticle ship
 var createVertShip = (shipLength, row, column) => {
@@ -140,6 +145,7 @@ var markBoard = (ship) => {
     }
   }
 }
+
 
 //============= Main Ship building function for Computer =======================
 //Calls other functions to make sure ship can be built
@@ -176,15 +182,14 @@ var cpuDisplayShip = (ship) => {
   }
 }
 
-// ========= Player Build Ship Functions =======================================
 
+// ========= Player Build Ship Functions =======================================
 // Displays data of CPU's created ship on webpage
 var playerDisplayShip = (ship) => {
   for(var i = 0; i < ship.length; i++) {
     document.getElementById(ship[i]).innerHTML =  "<div class='ship-select'></div>";
   }
 }
-
 
 //Marks Board with 1's to show where ships are to be placed
 var markPlayerBoard = (ship) => {
@@ -198,7 +203,6 @@ var markPlayerBoard = (ship) => {
     }
   }
 }
-
 
 // Checks player's board 
 var checkPlayerBoard = (ship) => {
@@ -214,8 +218,6 @@ var checkPlayerBoard = (ship) => {
   //if ship fits, return true
   return true; 
 }
-
-
 
 // finds row of player click on board
 locateBoardRow = (id) => {
@@ -272,7 +274,6 @@ var playerBuildShip = (shipLength, id) => {
 
     var row = locateBoardRow(id);
     var column = locateBoardColumn(id);
-     
     
     if (!vert) {
       ship = createHorizShip(shipLength, row, column);
@@ -294,6 +295,7 @@ var playerBuildShip = (shipLength, id) => {
   }
 }
 
+
 //==============  Mouse Click Functions  =======================================
 // when player clicks on CPU board
 var clickCpuBoard = () => {
@@ -304,7 +306,6 @@ var clickCpuBoard = () => {
   }
   
 }
-
 
 // Sets ship size to display when user clicks on ship selection
 var shipSize = 0;
@@ -317,16 +318,19 @@ var vert = false;
 var turnVertical = () => {
   vert = true
 }
+
 var turnHorizontal = () => {
   vert = false;
 }
 
 // Keep track of ships placed
 var shipCount = 5;
+
 // reduces ship count by 1 when called
 var reduceShipCount = () => {
   shipCount--
 }
+
 // alerts user all ships have been placed...and prevents more from being placed
 var checkShipCount = () => {
   if(shipCount <= 0) {
@@ -352,9 +356,8 @@ var clickTarget = (id) => {
 
   // lower ship count by one
   reduceShipCount();
-
-
 }
+
 
 //========== Visual mouseover functions ========================================
 var hoverA = (cell) => {
@@ -384,8 +387,7 @@ var leave = (cell) => {
 }
 
 
-
-// ===================== Start Game =========================
+// ===================== Start Game ============================================
 
 var main = () => {
   gameStart = true;
