@@ -173,23 +173,27 @@ displayShip(destroyer2);
 displayShip(frigate);
 displayShip(patrolCoastal);
 
+
+// Sets ship size to display when user clicks on ship selection
+var shipSize
+var selectShip = (size) => {
+  shipSize = size;
+}
+
+//========== Visual mouseover functions ========================
 var hoverA = (cell) => {
     console.log(cell);
-    document.getElementById(cell+1).innerHTML = "<div class='ship'></div>";
-    document.getElementById(cell+2).innerHTML = "<div class='ship'></div>";
-    document.getElementById(cell+3).innerHTML = "<div class='ship'></div>";
+    for(var i = 0; i < shipSize; i++) {
+      document.getElementById(cell+i).innerHTML = "<div class='ship'></div>";
+    }
+   
   // document.getElementById(id).innerHTML = "<div class='ship'></div>";
 }
-// var hoverB = (id) => {
-//   document.getElementById(id+1).innerHTML = "<div class='ship'></div>";
-//   document.getElementById(id+2).innerHTML = "<div class='ship'></div>";
-//   document.getElementById(id+3).innerHTML = "<div class='ship'></div>";
-// // document.getElementById(id).innerHTML = "<div class='ship'></div>";
-// }
 
-var leave = (id) => {
-  document.getElementById(id).innerHTML = "  ";
-  document.getElementById(id+1).innerHTML= "  ";
-  document.getElementById(id+2).innerHTML= "  ";
-  document.getElementById(id+3).innerHTML= "  ";
+var leave = (cell) => {
+  for(var i = 0; i< shipSize; i++){
+    document.getElementById(cell+i).innerHTML = "  ";
+
+  }
+
 }
