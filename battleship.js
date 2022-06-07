@@ -50,7 +50,7 @@ var playerBoardSelection = [
   ["x","x","x","x","x","x","x","x","x","x"],
   ["x","x","x","x","x","x","x","x","x","x"]             
 ];
-
+var gameStart = false;
 // ================ Randomizer Functions =======================================
 //creates random row number
 var randomRow = () => {
@@ -295,6 +295,17 @@ var playerBuildShip = (shipLength, id) => {
 }
 
 //==============  Mouse Click Functions  =======================================
+// when player clicks on CPU board
+var clickCpuBoard = () => {
+  if(gameStart){
+    alert("Game has started")
+  } else {
+    alert("Game has not started")
+  }
+  
+}
+
+
 // Sets ship size to display when user clicks on ship selection
 var shipSize = 0;
 var selectShip = (size) => {
@@ -376,27 +387,22 @@ var leave = (cell) => {
 
 // ===================== Start Game =========================
 
-
-
 var main = () => {
-
+  gameStart = true;
   //clear the selection screen
   document.getElementById('remove-on-start').innerHTML =  "";
 
-  //geberates the CPU's ships on board
+  //generates the CPU's ships on logical board
   var battleShip = cpuBuildShip(5);
   var destroyer1 = cpuBuildShip(4);
   var destroyer2 = cpuBuildShip(4);
   var frigate = cpuBuildShip(3); 
   var patrolCoastal = cpuBuildShip(2);
 
+  // displays ships on visual board
   cpuDisplayShip(battleShip);
   cpuDisplayShip(destroyer1);
   cpuDisplayShip(destroyer2);
   cpuDisplayShip(frigate);
   cpuDisplayShip(patrolCoastal);
-
-
-  alert("test");
-
 }
