@@ -1,172 +1,172 @@
-// // =========== arrays to represent gameboard====================================
-// var gameBoard = [ 
-//   [0,1,2,3,4,5,6,7,8,9],
-//   [10,11,12,13,14,15,16,17,18,19],
-//   [20,21,22,23,24,25,26,27,28,29],
-//   [30,31,32,33,34,35,36,37,38,39],     
-//   [40,41,42,43,44,45,46,47,48,49],
-//   [50,51,52,53,54,55,56,57,58,59],
-//   [60,61,62,63,64,65,66,67,68,69],
-//   [70,71,72,73,74,75,76,77,78,79],
-//   [80,81,82,83,84,85,86,87,88,89],
-//   [90,91,92,93,94,95,96,97,98,99]                  
-// ];
+// =========== arrays to represent gameboard====================================
+var gameBoard = [ 
+  [0,1,2,3,4,5,6,7,8,9],
+  [10,11,12,13,14,15,16,17,18,19],
+  [20,21,22,23,24,25,26,27,28,29],
+  [30,31,32,33,34,35,36,37,38,39],     
+  [40,41,42,43,44,45,46,47,48,49],
+  [50,51,52,53,54,55,56,57,58,59],
+  [60,61,62,63,64,65,66,67,68,69],
+  [70,71,72,73,74,75,76,77,78,79],
+  [80,81,82,83,84,85,86,87,88,89],
+  [90,91,92,93,94,95,96,97,98,99]                  
+];
 
-// var grid = [ 
-//   [0,1,2,3,4,5,6,7,8,9],
-//   [0,1,2,3,4,5,6,7,8,9],
-//   [0,1,2,3,4,5,6,7,8,9],
-//   [0,1,2,3,4,5,6,7,8,9],
-//   [0,1,2,3,4,5,6,7,8,9],
-//   [0,1,2,3,4,5,6,7,8,9],
-//   [0,1,2,3,4,5,6,7,8,9],
-//   [0,1,2,3,4,5,6,7,8,9],
-//   [0,1,2,3,4,5,6,7,8,9],
-//   [0,1,2,3,4,5,6,7,8,9]        
-// ];
+var grid = [ 
+  [0,1,2,3,4,5,6,7,8,9],
+  [0,1,2,3,4,5,6,7,8,9],
+  [0,1,2,3,4,5,6,7,8,9],
+  [0,1,2,3,4,5,6,7,8,9],
+  [0,1,2,3,4,5,6,7,8,9],
+  [0,1,2,3,4,5,6,7,8,9],
+  [0,1,2,3,4,5,6,7,8,9],
+  [0,1,2,3,4,5,6,7,8,9],
+  [0,1,2,3,4,5,6,7,8,9],
+  [0,1,2,3,4,5,6,7,8,9]        
+];
 
-// var boardSelection = [ 
-//   ["x","x","x","x","x","x","x","x","x","x"],
-//   ["x","x","x","x","x","x","x","x","x","x"],
-//   ["x","x","x","x","x","x","x","x","x","x"],
-//   ["x","x","x","x","x","x","x","x","x","x"],
-//   ["x","x","x","x","x","x","x","x","x","x"],
-//   ["x","x","x","x","x","x","x","x","x","x"],
-//   ["x","x","x","x","x","x","x","x","x","x"],
-//   ["x","x","x","x","x","x","x","x","x","x"],
-//   ["x","x","x","x","x","x","x","x","x","x"],
-//   ["x","x","x","x","x","x","x","x","x","x"]             
-// ];
+var boardSelection = [ 
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"]             
+];
 
-// // ================ Randomizer Functions =======================================
-// //creates random row number
-// var randomRow = () => {
-//   row = Math.floor(Math.random() * 10);
-//   return row;
-// }
-// // creates random column number
-// var randomColumn = () => {
-//   column = Math.floor(Math.random() * 10);
-//   return column;
-// }
-// // Randomly determines if ship will be verticle or horizontal
-// var randomVert = () => {
-//   random = Math.floor(Math.random() * 2);
-//   return random;
-// }
+// ================ Randomizer Functions =======================================
+//creates random row number
+var randomRow = () => {
+  row = Math.floor(Math.random() * 10);
+  return row;
+}
+// creates random column number
+var randomColumn = () => {
+  column = Math.floor(Math.random() * 10);
+  return column;
+}
+// Randomly determines if ship will be verticle or horizontal
+var randomVert = () => {
+  random = Math.floor(Math.random() * 2);
+  return random;
+}
 
-// //========= Validation Functions ===============================================
-// // Checks to see if ship can fit on board.
-// var checkBoard = (ship) => {
-//   for (var i = 0; i < ship.length; i++) {
-//     for (var j = 0; j < gameBoard.length; j++) {
-//       for (var k = 0; k < gameBoard[j].length; k++) {
-//         if(ship[i] == gameBoard[j][k] && boardSelection[j][k] == 1) {
-//           return false;
-//         }
-//       }
-//     }
-//   }
-//   //if ship fits, return true
-//   return true; 
-// }
+//========= Validation Functions ===============================================
+// Checks to see if ship can fit on board.
+var checkBoard = (ship) => {
+  for (var i = 0; i < ship.length; i++) {
+    for (var j = 0; j < gameBoard.length; j++) {
+      for (var k = 0; k < gameBoard[j].length; k++) {
+        if(ship[i] == gameBoard[j][k] && boardSelection[j][k] == 1) {
+          return false;
+        }
+      }
+    }
+  }
+  //if ship fits, return true
+  return true; 
+}
 
-// //checks to see in random numbers are in bounds for ship
-// var inBounds = (shipLength, row, column, vert) => {
-//   var rightBoundary = 10;
-//   var bottomBoundary = 10;
+//checks to see in random numbers are in bounds for ship
+var inBounds = (shipLength, row, column, vert) => {
+  var rightBoundary = 10;
+  var bottomBoundary = 10;
 
-//   if (vert == 0){
-//     if (grid[row][column] + shipLength > rightBoundary) {
-//       return false;
-//     }else {
-//       return true; 
-//     }
-//   } else {
-//     if (grid[row + shipLength] == undefined) {
-//       return false;
-//     } else {
-//       return true;
-//     }
-//   }
+  if (vert == 0){
+    if (grid[row][column] + shipLength > rightBoundary) {
+      return false;
+    }else {
+      return true; 
+    }
+  } else {
+    if (grid[row + shipLength] == undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   
-// }
+}
 
-// //================= Ship Creation Functions ====================================
-// //creates verticle ship
-// var createVertShip = (shipLength, row, column) => {
-//   var ship = [];
-//   for (var i = 0; i < shipLength; i++) {
-//     ship.push(gameBoard[row+i][column]);
-//   }
-//   return ship;
-// }
+//================= Ship Creation Functions ====================================
+//creates verticle ship
+var createVertShip = (shipLength, row, column) => {
+  var ship = [];
+  for (var i = 0; i < shipLength; i++) {
+    ship.push(gameBoard[row+i][column]);
+  }
+  return ship;
+}
 
-// //creates horizontal ship
-// var createHorizShip = (shipLength, row, column) => {
-//   var ship = [];
-//   for(var i = 0; i < shipLength; i++) {
-//     ship.push(gameBoard[row][column+i]);
-//   }
-//   return ship;
-// }
+//creates horizontal ship
+var createHorizShip = (shipLength, row, column) => {
+  var ship = [];
+  for(var i = 0; i < shipLength; i++) {
+    ship.push(gameBoard[row][column+i]);
+  }
+  return ship;
+}
   
-// //Marks Board with 1's to show where ships are to be placed
-// var markBoard = (ship) => {
-//   for(var i = 0; i < ship.length; i++) {
-//     for(var j = 0; j < gameBoard.length; j++) {
-//       for(var k = 0; k < gameBoard[j].length; k++) {
-//         if(ship[i] == gameBoard[j][k]) {
-//           boardSelection[j][k] = 1;
-//         }
-//       }
-//     }
-//   }
-// }
+//Marks Board with 1's to show where ships are to be placed
+var markBoard = (ship) => {
+  for(var i = 0; i < ship.length; i++) {
+    for(var j = 0; j < gameBoard.length; j++) {
+      for(var k = 0; k < gameBoard[j].length; k++) {
+        if(ship[i] == gameBoard[j][k]) {
+          boardSelection[j][k] = 1;
+        }
+      }
+    }
+  }
+}
 
-// //============= Main Ship building function ====================================
-// //Calls other functions to make sure ship can be built
-// var buildShip = (shipLength) => {
-//   //builds ship to users specification
-//   var shipAvailable = false;
-//   while(!shipAvailable) {
-//     var isInBounds = false;
-//     while(!isInBounds) {
-//       var row = randomRow();
-//       var column = randomColumn();
-//       var vert = randomVert(); 
-//       isInBounds = inBounds(shipLength, row, column, vert)
-//     }
-//     var ship = []
-//     if (vert == 0) {
-//       ship = createHorizShip(shipLength, row, column);
-//     } else if (vert == 1) {
-//       ship = createVertShip(shipLength, row, column);
-//     }
+//============= Main Ship building function for Computer =======================
+//Calls other functions to make sure ship can be built
+var cpuBuildShip = (shipLength) => {
+  //builds ship to users specification
+  var shipAvailable = false;
+  while(!shipAvailable) {
+    var isInBounds = false;
+    while(!isInBounds) {
+      var row = randomRow();
+      var column = randomColumn();
+      var vert = randomVert(); 
+      isInBounds = inBounds(shipLength, row, column, vert)
+    }
+    var ship = []
+    if (vert == 0) {
+      ship = createHorizShip(shipLength, row, column);
+    } else if (vert == 1) {
+      ship = createVertShip(shipLength, row, column);
+    }
   
-//     //stops loop if ship can be built at location
-//     shipAvailable = checkBoard(ship);
-//   }
-//   //places ships on board
-//   markBoard(ship);
-//   return ship;
-// }
+    //stops loop if ship can be built at location
+    shipAvailable = checkBoard(ship);
+  }
+  //places ships on board
+  markBoard(ship);
+  return ship;
+}
 
-// // Ship classes and sizes for game
-// var battleShip = buildShip(5);
-// var destroyer1 = buildShip(4);
-// var destroyer2 = buildShip(4);
-// var frigate = buildShip(3); 
-// var patrolCoastal = buildShip(2)
+// Ship classes and sizes for game
+// var battleShip = cpuBuildShip(5);
+// var destroyer1 = cpuBuildShip(4);
+// var destroyer2 = cpuBuildShip(4);
+// var frigate = cpuBuildShip(3); 
+// var patrolCoastal = cpuBuildShip(2)
 
-// // Displays data of created ship on webpage
-// var displayShip = (ship) => {
-//   for(var i = 0; i < ship.length; i++) {
-//     document.getElementById(ship[i]).innerHTML = "  ";
-//   }
-// }
+// Displays data of created ship on webpage
+var displayShip = (ship) => {
+  for(var i = 0; i < ship.length; i++) {
+    document.getElementById(ship[i]).innerHTML = "TEST";
+  }
+}
 
-// // Displays each ship on webpage
+// Displays each ship on webpage
 // displayShip(battleShip);
 // displayShip(destroyer1);
 // displayShip(destroyer2);
@@ -174,10 +174,89 @@
 // displayShip(patrolCoastal);
 
 
+// ========= Player Build Ship Functions =======================================
+// finds row of player click on board
+locateBoardRow = (id) => {
+  for(var i = 0; i < gameBoard.length; i++) {
+    for(var j = 0; j < gameBoard[i].length; j++){
+      if(id == gameBoard[i][j]) {
+        console.log("i = " + i)
+        return i;
+      }
+    }
+  }
+}
+
+// finds column of player click on board
+locateBoardColumn = (id) => {
+  for(var i = 0; i < gameBoard.length; i++) {
+    for(var j = 0; j < gameBoard[i].length; j++){
+      if(id == gameBoard[i][j]) {
+        console.log("j = " + i)
+        return j;
+      }
+    }
+  }
+}
+
+// detects if player's ship is completely on the board
+var playerInBounds = (shipLength, row, column, vert) => {
+  var rightBoundary = 10;
+  var bottomBoundary = 10;
+
+  if (vert == 0){
+    if (grid[row][column] + shipLength > rightBoundary) {
+      return false;
+    }else {
+      return true; 
+    }
+  } else {
+    if (grid[row + shipLength] == undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  
+}
+
+// builds player's ships
+var playerBuildShip = (shipLength, id) => {
+  if(shipLength > 0) {
+  //builds ship to users specification
+    var shipAvailable = false;
+    var isInBounds = false;
+    var ship = []
+
+    var row = locateBoardRow(id);
+    var column = locateBoardColumn(id);
+    var vert = 0; 
+    
+    if (vert == 0) {
+      ship = createHorizShip(shipLength, row, column);
+    } else if (vert == 1) {
+      ship = createVertShip(shipLength, row, column);
+    }
+
+    //checks to see if ship is in bounds and available to place on board
+    shipAvailable = checkBoard(ship);
+    isInBounds = playerInBounds(shipLength, row, column, vert)
+
+    if (shipAvailable && isInBounds) {
+      //places ships on board
+      markBoard(ship);
+      return ship;
+    } else {
+      alert("SHIP NOT AVAILABLE");
+    }
+  }
+}
 
 //==============  Mouse Click Functions  =======================================
+
+
 // Sets ship size to display when user clicks on ship selection
-var shipSize;
+var shipSize = 0;
 var selectShip = (size) => {
   shipSize = size;
 }
@@ -210,6 +289,8 @@ var checkShipCount = () => {
   }
 }
 
+
+
 // Click event that initializes selection functions
 var clickTarget = (id) => {
   // checks if there are ships to place
@@ -217,16 +298,19 @@ var clickTarget = (id) => {
 
   // if ships can be placed, player can place ship..
   if(playerSelect) {
-    if(horizontal){
-      for(var i = 0; i < shipSize; i++) {
-        document.getElementById(id+i).innerHTML = "<div class='ship'></div>";
-      }
-    } else if (vertical) {
-      for(var i = 0; i < shipSize*10; i += 10) {
-        document.getElementById(id+i).innerHTML = "<div class='ship'></div>";
-      }
-    }
+    var playerShip = playerBuildShip(shipSize, id);
+
+    // if(horizontal){
+    //   for(var i = 0; i < shipSize; i++) {
+    //     document.getElementById(id+i).innerHTML = "<div class='ship'></div>";
+    //   }
+    // } else if (vertical) {
+    //   for(var i = 0; i < shipSize*10; i += 10) {
+    //     document.getElementById(id+i).innerHTML = "<div class='ship'></div>";
+    //   }
+    // }
   }
+  displayShip(playerShip);
 
   // lower ship count by one
   reduceShipCount();
