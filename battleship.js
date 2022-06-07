@@ -177,7 +177,7 @@ displayShip(patrolCoastal);
 
 //==============  Player Selection  ============================================
 // Sets ship size to display when user clicks on ship selection
-var shipSize
+var shipSize;
 var selectShip = (size) => {
   shipSize = size;
 }
@@ -192,6 +192,42 @@ var turnVertical = () => {
 var turnHorizontal = () => {
   horizontal = true;
   vertical = false;
+}
+
+// Keep track of ships placed
+var shipCount = 5;
+// reduces ship count by 1 when called
+var reduceShipCount = () => {
+  shipCount--
+}
+
+var checkShipCount = () => {
+  if(shipCount <= 0) {
+    alert("Out of ships!")
+    return false;
+  } else {
+    return true;
+  }
+}
+
+var clickTarget = (id) => {
+  var playerSelect = checkShipCount();
+
+  if(playerSelect) {
+    if(horizontal){
+      for(var i = 0; i < shipSize; i++) {
+        document.getElementById(id+i).innerHTML = "<div class='ship'></div>";
+      }
+    } else if (vertical) {
+      for(var i = 0; i < shipSize*10; i += 10) {
+        document.getElementById(id+i).innerHTML = "<div class='ship'></div>";
+      }
+    }
+  }
+ 
+  reduceShipCount();
+
+
 }
 
 //========== Visual mouseover functions ========================================
