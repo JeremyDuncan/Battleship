@@ -55,7 +55,7 @@ var randomVert = () => {
   return random;
 }
 
-
+//========= Validation Functions =========================
 // Checks to see if ship can fit on board.
 var checkBoard = (ship) => {
   for (var i = 0; i < ship.length; i++) {
@@ -92,6 +92,7 @@ var inBounds = (shipLength, row, column, vert) => {
   
 }
 
+//================= Ship Creation Functions ================
 //creates verticle ship
 var createVertShip = (shipLength, row, column) => {
   var ship = [];
@@ -161,7 +162,7 @@ var patrolCoastal = buildShip(2)
 // Displays data of created ship on webpage
 var displayShip = (ship) => {
   for(var i = 0; i < ship.length; i++) {
-    document.getElementById(ship[i]).innerHTML = "  "
+    document.getElementById(ship[i]).innerHTML = "  ";
   }
 }
 
@@ -171,3 +172,24 @@ displayShip(destroyer1);
 displayShip(destroyer2);
 displayShip(frigate);
 displayShip(patrolCoastal);
+
+var hoverA = (cell) => {
+    console.log(cell);
+    document.getElementById(cell+1).innerHTML = "<div class='ship'></div>";
+    document.getElementById(cell+2).innerHTML = "<div class='ship'></div>";
+    document.getElementById(cell+3).innerHTML = "<div class='ship'></div>";
+  // document.getElementById(id).innerHTML = "<div class='ship'></div>";
+}
+// var hoverB = (id) => {
+//   document.getElementById(id+1).innerHTML = "<div class='ship'></div>";
+//   document.getElementById(id+2).innerHTML = "<div class='ship'></div>";
+//   document.getElementById(id+3).innerHTML = "<div class='ship'></div>";
+// // document.getElementById(id).innerHTML = "<div class='ship'></div>";
+// }
+
+var leave = (id) => {
+  document.getElementById(id).innerHTML = "  ";
+  document.getElementById(id+1).innerHTML= "  ";
+  document.getElementById(id+2).innerHTML= "  ";
+  document.getElementById(id+3).innerHTML= "  ";
+}
