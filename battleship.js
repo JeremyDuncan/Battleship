@@ -1,4 +1,4 @@
-// =========== arrays to represent gameboard===================
+// =========== arrays to represent gameboard====================================
 var gameBoard = [ 
   [0,1,2,3,4,5,6,7,8,9],
   [10,11,12,13,14,15,16,17,18,19],
@@ -38,7 +38,7 @@ var boardSelection = [
   ["x","x","x","x","x","x","x","x","x","x"]             
 ];
 
-// ================ Randomizer Functions ================
+// ================ Randomizer Functions =======================================
 //creates random row number
 var randomRow = () => {
   row = Math.floor(Math.random() * 10);
@@ -55,7 +55,7 @@ var randomVert = () => {
   return random;
 }
 
-//========= Validation Functions =========================
+//========= Validation Functions ===============================================
 // Checks to see if ship can fit on board.
 var checkBoard = (ship) => {
   for (var i = 0; i < ship.length; i++) {
@@ -92,7 +92,7 @@ var inBounds = (shipLength, row, column, vert) => {
   
 }
 
-//================= Ship Creation Functions ================
+//================= Ship Creation Functions ====================================
 //creates verticle ship
 var createVertShip = (shipLength, row, column) => {
   var ship = [];
@@ -124,7 +124,7 @@ var markBoard = (ship) => {
   }
 }
 
-//============= Main Ship building function ================================
+//============= Main Ship building function ====================================
 //Calls other functions to make sure ship can be built
 var buildShip = (shipLength) => {
   //builds ship to users specification
@@ -174,26 +174,48 @@ displayShip(frigate);
 displayShip(patrolCoastal);
 
 
+
+//==============  Player Selection  ============================================
 // Sets ship size to display when user clicks on ship selection
 var shipSize
 var selectShip = (size) => {
   shipSize = size;
 }
 
-//========== Visual mouseover functions ========================
+// sets ship to Vertical or horizontal based on what user selects
+var horizontal = true;
+var vertical = false;
+var turnVertical = () => {
+  horizontal = false
+  vertical = true
+}
+var turnHorizontal = () => {
+  horizontal = true;
+  vertical = false;
+}
+
+//========== Visual mouseover functions ========================================
 var hoverA = (cell) => {
-    console.log(cell);
+  console.log(cell);
+  if(horizontal){
     for(var i = 0; i < shipSize; i++) {
       document.getElementById(cell+i).innerHTML = "<div class='ship'></div>";
     }
-   
-  // document.getElementById(id).innerHTML = "<div class='ship'></div>";
+  } else if (vertical) {
+    for(var i = 0; i < shipSize*100; i += 100) {
+      document.getElementById(cell+i).innerHTML = "<div class='ship'></div>";
+    }
+  }
 }
 
 var leave = (cell) => {
-  for(var i = 0; i< shipSize; i++){
-    document.getElementById(cell+i).innerHTML = "  ";
-
+  if(horizontal){
+    for(var i = 0; i< shipSize; i++){
+      document.getElementById(cell+i).innerHTML = "  ";
+    }
+  } else if (vertical) {
+    for(var i = 0; i < shipSize*100; i += 100) {
+      document.getElementById(cell+i).innerHTML = "  ";
+    }
   }
-
 }
