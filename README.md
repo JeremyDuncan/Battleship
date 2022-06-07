@@ -5,7 +5,7 @@
 - Sink the computer's ships before it sinks all of yours.
 #
 
-<img src="./battleship_screen_shot_1.webp">
+<img src="./images/battleship_screen_shot_1.webp">
 
 #
-<img src="./battleship_screenshot_2.webp">
+<img src="./images/battleship_screenshot_2.webp">
