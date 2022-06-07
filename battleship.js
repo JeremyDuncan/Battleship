@@ -295,12 +295,31 @@ var playerBuildShip = (shipLength, id) => {
   }
 }
 
+// checks player missile strike location for ship presence
+// notifies player of direct hit if ship present, changes logical board marker
+// at location from 1 to 0, notifies player if he has already fired missile at location.
+var checkIfDirectHit = (id) => {
+  for(var i = 0; i <gameBoard.length; i++) {
+    for(var j = 0; j < gameBoard[i].length; j++){
+      if(id == gameBoard[i][j] && cpuBoardSelection[i][j] == 1) {
+        alert("Direct HIT!!")
+        cpuBoardSelection[i][j] = 0;
+      } else if (id == gameBoard[i][j] && cpuBoardSelection[i][j] == 0){
+        alert("You already hit here!!!");
+      }
+    }
+  }
+}
 
 //==============  Mouse Click Functions  =======================================
 // when player clicks on CPU board
-var clickCpuBoard = () => {
+var clickCpuBoard = (id) => {
   if(gameStart){
-    alert("Game has started")
+    checkIfDirectHit(id);
+
+
+
+
   } else {
     alert("Game has not started")
   }
@@ -389,6 +408,7 @@ var leave = (cell) => {
 
 // ===================== Start Game ============================================
 
+// When player selects start, this generates the cpu's ships on the cpu board
 var main = () => {
   gameStart = true;
   //clear the selection screen
