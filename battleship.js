@@ -38,6 +38,19 @@ var boardSelection = [
   ["x","x","x","x","x","x","x","x","x","x"]             
 ];
 
+var playerBoardSelection = [ 
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"],
+  ["x","x","x","x","x","x","x","x","x","x"]             
+];
+
 // ================ Randomizer Functions =======================================
 //creates random row number
 var randomRow = () => {
@@ -179,6 +192,38 @@ var displayShip = (ship) => {
 
 
 // ========= Player Build Ship Functions =======================================
+
+//Marks Board with 1's to show where ships are to be placed ==========================>>>>>>>>>>CHECK
+var markPlayerBoard = (ship) => {
+  for(var i = 0; i < ship.length; i++) {
+    for(var j = 0; j < gameBoard.length; j++) {
+      for(var k = 0; k < gameBoard[j].length; k++) {
+        if(ship[i] == gameBoard[j][k]) {
+          playerBoardSelection[j][k] = 1;
+        }
+      }
+    }
+  }
+}
+
+
+// Checks player's board ==========================>>>>>>>>>>CHECK
+var checkPlayerBoard = (ship) => {
+  for (var i = 0; i < ship.length; i++) {
+    for (var j = 0; j < gameBoard.length; j++) {
+      for (var k = 0; k < gameBoard[j].length; k++) {
+        if(ship[i] == gameBoard[j][k] && playerBoardSelection[j][k] == 1) {
+          return false;
+        }
+      }
+    }
+  }
+  //if ship fits, return true
+  return true; 
+}
+
+
+
 // finds row of player click on board
 locateBoardRow = (id) => {
   for(var i = 0; i < gameBoard.length; i++) {
@@ -224,7 +269,7 @@ var playerInBounds = (shipLength, row, column, vert) => {
   
 }
 
-// builds player's ships
+// builds player's ship
 var playerBuildShip = (shipLength, id) => {
   if(shipLength > 0) {
   //builds ship to users specification
@@ -243,20 +288,18 @@ var playerBuildShip = (shipLength, id) => {
     }
 
     //checks to see if ship is in bounds and available to place on board
-    shipAvailable = checkBoard(ship);
+    shipAvailable = checkPlayerBoard(ship);
     isInBounds = playerInBounds(shipLength, row, column, vert)
 
     if (shipAvailable && isInBounds) {
       //places ships on board
-      markBoard(ship);
+      markPlayerBoard(ship);
       return ship;
     } else {
       alert("SHIP NOT AVAILABLE");
     }
   }
 }
-
-
 
 //==============  Mouse Click Functions  =======================================
 // Sets ship size to display when user clicks on ship selection
@@ -289,8 +332,6 @@ var checkShipCount = () => {
     return true;
   }
 }
-
-
 
 // Click event that initializes selection functions
 var clickTarget = (id) => {
@@ -336,4 +377,33 @@ var leave = (cell) => {
       document.getElementById(cell+i).innerHTML = "  ";
     }
   }
+}
+
+
+
+// ===================== Start Game =========================
+
+
+
+var main = () => {
+
+  //clear the selection screen
+  document.getElementById('remove-on-start').innerHTML =  "";
+
+  //geberates the CPU's ships on board
+  var battleShip = cpuBuildShip(5);
+  var destroyer1 = cpuBuildShip(4);
+  var destroyer2 = cpuBuildShip(4);
+  var frigate = cpuBuildShip(3); 
+  var patrolCoastal = cpuBuildShip(2);
+
+  displayShip(battleShip);
+  displayShip(destroyer1);
+  displayShip(destroyer2);
+  displayShip(frigate);
+  displayShip(patrolCoastal);
+
+
+  alert("test");
+
 }
