@@ -1,5 +1,5 @@
 body {
-  color: rgb(220, 7, 7);
+  color: rgb(14, 12, 12);
 }
 
 .container {
@@ -10,9 +10,12 @@ body {
 
 header {
   border: 3px solid rgb(230, 3, 3);
+  text-align: center;
 
 }
-
+.message {
+  text-align: center;
+}
 .container-main {
   border: 3px solid rgb(47, 5, 214);
 
@@ -21,16 +24,17 @@ header {
 .game-boards {
   display: flex;
   border: 3px solid rgb(8, 198, 62);
+  text-align: center;
 
 }
 
 .square{
-
   text-align: center;
   background-color: black;
   border: 0px solid rgb(103, 1, 1);
   padding: 0px;
 }
+
 td {
   padding: 0px;
   width: 50px;
@@ -87,4 +91,39 @@ footer {
 }
  .square:hover{
   background-color: white;
+}
+
+/* ==== Responsive CSS Styles ==== */
+@media (max-width: 550px) {
+  .game-boards {
+    flex-direction: column;
+  }
+  .label {
+    font-size: 10px;
+    padding: 0px;
+    margin: 0px;
+    width: 10px;
+    height: 10px;
+  }
+  td {
+    padding: 0px;
+    width: 35px;
+    height: 35px;
+  }
+  .ship {
+    width: 35px;
+    height: 35px;
+  }
+  .ship-select {
+    width: 35px;
+    height: 35px;
+  }
+  .ship-hit {
+    width: 35px;
+    height: 35px;
+  }
+  .ship-miss {
+    width: 35px;
+    height: 35px;
+  }
 }

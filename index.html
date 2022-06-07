@@ -19,6 +19,39 @@
       <div class="message">
         Welcome to Battleship!
       </div>
+      
+      <div id="remove-on-start" class="selection">
+        <div> 
+          Select Vertical or Horizontal
+        </div>
+        <div onclick="turnVertical()" class="vertical-selection">
+          Vertical
+        </div>
+        <div onclick="turnHorizontal()" class="horizontal-selection">
+          Horizontal
+        </div>
+        <div>
+          Select your ship.
+        </div>
+        <div class="ship-selection">
+          <div onclick="selectShip(3)" class="battleship">
+            battleship
+          </div>
+          <div onclick="selectShip(3)" class="destroyer">
+            destroyer
+          </div> 
+          <div onclick="selectShip(3)" class="frigate">
+            frigate
+          </div>
+          <div onclick="selectShip(3)" class="patrol-coastal">
+            patrol coastal ship
+          </div>
+        </div>
+        <div class="start-game" onclick="clickStartGame()">
+          Start Game
+        </div>
+      </div>
+
       <div class="game-boards">
         <div class="player-board">
           player-board
@@ -177,38 +210,6 @@
               <td class="label">10</td>
             </tr>
           </table>
-        </div>
-
-        <div id="remove-on-start" class="selection">
-          <div> 
-            Select Vertical or Horizontal
-          </div>
-          <div onclick="turnVertical()" class="vertical-selection">
-            Vertical
-          </div>
-          <div onclick="turnHorizontal()" class="horizontal-selection">
-            Horizontal
-          </div>
-          <div>
-            Select your ship.
-          </div>
-          <div class="ship-selection">
-            <div onclick="selectShip(3)" class="battleship">
-              battleship
-            </div>
-            <div onclick="selectShip(3)" class="destroyer">
-              destroyer
-            </div> 
-            <div onclick="selectShip(3)" class="frigate">
-              frigate
-            </div>
-            <div onclick="selectShip(3)" class="patrol-coastal">
-              patrol coastal ship
-            </div>
-          </div>
-          <div class="start-game" onclick="clickStartGame()">
-            Start Game
-          </div>
         </div>
 
         <div class="computer-board">
