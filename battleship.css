@@ -7,11 +7,10 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  border: 3px solid black;
+  gap: 10px;
 }
 
 header {
-  border: 3px solid rgb(230, 3, 3);
   text-align: center;
 
 }
@@ -147,13 +146,11 @@ header {
 
 }
 .container-main {
-  border: 3px solid rgb(47, 5, 214);
 
 }
 
 .game-boards {
   display: flex;
-  border: 3px solid rgb(8, 198, 62);
   text-align: center;
 
 }
@@ -197,19 +194,18 @@ td {
 
 footer {
   display: flex;
-  border: 3px solid black;
-
+  justify-self: space-between;
+  justify-content: space-evenly;
 }
 
 .copyright {
-  border: 1px solid rgb(199, 8, 206);
-
+display: flex;
 }
 
 .info-link {
-  border: 1px solid rgb(178, 5, 135);
-
+display: flex;
 }
+
 .ship {
   background-color: white;
   width: 50px;
