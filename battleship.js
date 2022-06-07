@@ -175,7 +175,7 @@
 
 
 
-//==============  Player Selection  ============================================
+//==============  Mouse Click Functions  =======================================
 // Sets ship size to display when user clicks on ship selection
 var shipSize;
 var selectShip = (size) => {
@@ -227,7 +227,7 @@ var clickTarget = (id) => {
       }
     }
   }
-  
+
   // lower ship count by one
   reduceShipCount();
 
