@@ -487,11 +487,11 @@ var clickStartGame = () => {
     var patrolCoastal = cpuBuildShip(3);
   
     // displays ships on visual board
-    cpuDisplayShip(battleShip);
-    cpuDisplayShip(destroyer1);
-    cpuDisplayShip(destroyer2);
-    cpuDisplayShip(frigate);
-    cpuDisplayShip(patrolCoastal);
+    // cpuDisplayShip(battleShip);
+    // cpuDisplayShip(destroyer1);
+    // cpuDisplayShip(destroyer2);
+    // cpuDisplayShip(frigate);
+    // cpuDisplayShip(patrolCoastal);
 
   } else {
     alert("Select your ship location's first")
