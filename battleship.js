@@ -166,7 +166,7 @@ var cpuBuildShip = (shipLength) => {
 // Displays data of created ship on webpage
 var displayShip = (ship) => {
   for(var i = 0; i < ship.length; i++) {
-    document.getElementById(ship[i]).innerHTML = "TEST";
+    document.getElementById(ship[i]).innerHTML =  "<div class='ship'></div>";
   }
 }
 
@@ -300,17 +300,9 @@ var clickTarget = (id) => {
   // if ships can be placed, player can place ship..
   if(playerSelect) {
     var playerShip = playerBuildShip(shipSize, id);
-
-    // if(horizontal){
-    //   for(var i = 0; i < shipSize; i++) {
-    //     document.getElementById(id+i).innerHTML = "<div class='ship'></div>";
-    //   }
-    // } else if (vertical) {
-    //   for(var i = 0; i < shipSize*10; i += 10) {
-    //     document.getElementById(id+i).innerHTML = "<div class='ship'></div>";
-    //   }
-    // }
   }
+
+  //displays ship on board
   displayShip(playerShip);
 
   // lower ship count by one
