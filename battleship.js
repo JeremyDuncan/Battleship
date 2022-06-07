@@ -52,7 +52,11 @@ var randomColumn = () => {
 // Randomly determines if ship will be verticle or horizontal
 var randomVert = () => {
   random = Math.floor(Math.random() * 2);
-  return random;
+  if(random == 0){
+    return false
+  } else {
+    return true
+  }
 }
 
 //========= Validation Functions ===============================================
@@ -76,7 +80,7 @@ var inBounds = (shipLength, row, column, vert) => {
   var rightBoundary = 10;
   var bottomBoundary = 10;
 
-  if (vert == 0){
+  if (!vert){
     if (grid[row][column] + shipLength > rightBoundary) {
       return false;
     }else {
@@ -138,9 +142,9 @@ var cpuBuildShip = (shipLength) => {
       isInBounds = inBounds(shipLength, row, column, vert)
     }
     var ship = []
-    if (vert == 0) {
+    if (!vert) {
       ship = createHorizShip(shipLength, row, column);
-    } else if (vert == 1) {
+    } else if (vert) {
       ship = createVertShip(shipLength, row, column);
     }
   
@@ -204,7 +208,7 @@ var playerInBounds = (shipLength, row, column, vert) => {
   var rightBoundary = 10;
   var bottomBoundary = 10;
 
-  if (vert == 0){
+  if (!vert){
     if (grid[row][column] + shipLength > rightBoundary) {
       return false;
     }else {
@@ -230,11 +234,11 @@ var playerBuildShip = (shipLength, id) => {
 
     var row = locateBoardRow(id);
     var column = locateBoardColumn(id);
-    var vert = 0; 
+     
     
-    if (vert == 0) {
+    if (!vert) {
       ship = createHorizShip(shipLength, row, column);
-    } else if (vert == 1) {
+    } else if (vert) {
       ship = createVertShip(shipLength, row, column);
     }
 
@@ -252,9 +256,9 @@ var playerBuildShip = (shipLength, id) => {
   }
 }
 
+
+
 //==============  Mouse Click Functions  =======================================
-
-
 // Sets ship size to display when user clicks on ship selection
 var shipSize = 0;
 var selectShip = (size) => {
@@ -262,15 +266,12 @@ var selectShip = (size) => {
 }
 
 // sets ship to Vertical or horizontal based on what user selects
-var horizontal = true;
-var vertical = false;
+var vert = false;
 var turnVertical = () => {
-  horizontal = false
-  vertical = true
+  vert = true
 }
 var turnHorizontal = () => {
-  horizontal = true;
-  vertical = false;
+  vert = false;
 }
 
 // Keep track of ships placed
@@ -321,11 +322,11 @@ var clickTarget = (id) => {
 //========== Visual mouseover functions ========================================
 var hoverA = (cell) => {
   console.log(cell);
-  if(horizontal){
+  if(!vert){
     for(var i = 0; i < shipSize; i++) {
       document.getElementById(cell+i).innerHTML = "<div class='ship'></div>";
     }
-  } else if (vertical) {
+  } else if (vert) {
     for(var i = 0; i < shipSize*100; i += 100) {
       document.getElementById(cell+i).innerHTML = "<div class='ship'></div>";
     }
@@ -333,11 +334,11 @@ var hoverA = (cell) => {
 }
 
 var leave = (cell) => {
-  if(horizontal){
+  if(!vert){
     for(var i = 0; i< shipSize; i++){
       document.getElementById(cell+i).innerHTML = "  ";
     }
-  } else if (vertical) {
+  } else if (vert) {
     for(var i = 0; i < shipSize*100; i += 100) {
       document.getElementById(cell+i).innerHTML = "  ";
     }
