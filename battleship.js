@@ -147,7 +147,7 @@ var markBoard = (ship) => {
 }
 
 
-//============= Main Ship building function for Computer =======================
+//============= CPU Ship building function =====================================
 //Calls other functions to make sure ship can be built
 var cpuBuildShip = (shipLength) => {
   //builds ship to users specification
@@ -183,7 +183,7 @@ var cpuDisplayShip = (ship) => {
 }
 
 
-// ========= Player Build Ship Functions =======================================
+// ========= Player Ship Building Functions ====================================
 // Displays data of CPU's created ship on webpage
 var playerDisplayShip = (ship) => {
   for(var i = 0; i < ship.length; i++) {
@@ -255,7 +255,7 @@ var playerInBounds = (shipLength, row, column, vert) => {
       return true; 
     }
   } else {
-    if (grid[row + shipLength] == undefined) {
+    if (grid[row] + shipLength == undefined) { // Investigate further
       return false;
     } else {
       return true;
@@ -290,7 +290,7 @@ var playerBuildShip = (shipLength, id) => {
       markPlayerBoard(ship);
       return ship;
     } else {
-      alert("SHIP NOT AVAILABLE");
+      alert("Ship out of bounds!");
     }
   }
 }
@@ -302,24 +302,65 @@ var checkIfDirectHit = (id) => {
   for(var i = 0; i <gameBoard.length; i++) {
     for(var j = 0; j < gameBoard[i].length; j++){
       if(id == gameBoard[i][j] && cpuBoardSelection[i][j] == 1) {
-        alert("Direct HIT!!")
         cpuBoardSelection[i][j] = 0;
+        document.getElementById("A"+id).innerHTML = "<div class='ship-hit'></div>";
+        return true;
       } else if (id == gameBoard[i][j] && cpuBoardSelection[i][j] == 0){
         alert("You already hit here!!!");
+      } else {
+        document.getElementById("A"+id).innerHTML = "<div class='ship-miss'></div>";
       }
     }
   }
 }
 
+// Randomized CPU Attack after Player attacks.
+var cpuAttack = () => {
+  var row = randomRow();
+  var column = randomColumn();
+  var attackVector = gameBoard[row][column];
+  for(var i = 0; i <gameBoard.length; i++) {
+    for(var j = 0; j < gameBoard[i].length; j++){
+      if(attackVector == gameBoard[i][j] && playerBoardSelection[i][j] == 1) {
+        playerBoardSelection[i][j] = 0;
+        document.getElementById(attackVector).innerHTML = "<div class='ship-hit'></div>";
+        return true;
+      } else if (attackVector == gameBoard[i][j] && playerBoardSelection[i][j] == 0){
+        alert("You already hit here!!!");
+      } else {
+        document.getElementById(attackVector).innerHTML = "<div class='ship-miss'></div>";
+      }
+    }
+  }
+}
+
+
+var playerHits = 0;
+var cpuHits = 0;
 //==============  Mouse Click Functions  =======================================
+//=============== ATTTAAAAAAACCCCKKKKK!!!!!! ===================
 // when player clicks on CPU board
 var clickCpuBoard = (id) => {
   if(gameStart){
-    checkIfDirectHit(id);
+    var directHit = false;
 
+    // PLAYER Attack ====
+    directHit = checkIfDirectHit(id);
 
+    if(directHit){
+      playerHits += 1;
+    }
+   
+    if (playerHits >= 12) {
+      alert("gameover, You WIN!");
+    }
 
+    // CPU Attack ====
+    var cpuDirectHit = cpuAttack();
 
+    if(cpuDirectHit) {
+      cpuHits += 1;
+    }
   } else {
     alert("Game has not started")
   }
@@ -353,7 +394,7 @@ var reduceShipCount = () => {
 // alerts user all ships have been placed...and prevents more from being placed
 var checkShipCount = () => {
   if(shipCount <= 0) {
-    alert("Out of ships!")
+    alert("You have placed all ships. Click on Start Game.")
     return false;
   } else {
     return true;
@@ -409,22 +450,28 @@ var leave = (cell) => {
 // ===================== Start Game ============================================
 
 // When player selects start, this generates the cpu's ships on the cpu board
-var main = () => {
-  gameStart = true;
-  //clear the selection screen
-  document.getElementById('remove-on-start').innerHTML =  "";
+var clickStartGame = () => {
+  if(shipCount <= 0) {
+    gameStart = true;
+    //clear the selection screen
+    document.getElementById('remove-on-start').innerHTML =  "";
+  
+    //generates the CPU's ships on logical board
+    var battleShip = cpuBuildShip(3);
+    var destroyer1 = cpuBuildShip(3);
+    var destroyer2 = cpuBuildShip(3);
+    var frigate = cpuBuildShip(3); 
+    var patrolCoastal = cpuBuildShip(3);
+  
+    // displays ships on visual board
+    cpuDisplayShip(battleShip);
+    cpuDisplayShip(destroyer1);
+    cpuDisplayShip(destroyer2);
+    cpuDisplayShip(frigate);
+    cpuDisplayShip(patrolCoastal);
 
-  //generates the CPU's ships on logical board
-  var battleShip = cpuBuildShip(5);
-  var destroyer1 = cpuBuildShip(4);
-  var destroyer2 = cpuBuildShip(4);
-  var frigate = cpuBuildShip(3); 
-  var patrolCoastal = cpuBuildShip(2);
-
-  // displays ships on visual board
-  cpuDisplayShip(battleShip);
-  cpuDisplayShip(destroyer1);
-  cpuDisplayShip(destroyer2);
-  cpuDisplayShip(frigate);
-  cpuDisplayShip(patrolCoastal);
+  } else {
+    alert("Select your ship location's first")
+  }
+ 
 }

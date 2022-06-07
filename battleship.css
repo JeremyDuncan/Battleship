@@ -75,10 +75,15 @@ footer {
   width: 50px;
   height: 50px;
 }
-.ship_hit {
+.ship-hit {
   width: 50px;
   height: 50px;
   background-color: red; 
+}
+.ship-miss {
+  width: 50px;
+  height: 50px;
+  background-color: rgb(115, 188, 236); 
 }
  .square:hover{
   background-color: white;
