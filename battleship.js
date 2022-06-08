@@ -308,6 +308,9 @@ var playerBuildShip = (shipLength, id) => {
   }
 }
 
+
+var playerHits = 0;
+var cpuHits = 0;
 // checks player missile strike location for ship presence
 // notifies player of direct hit if ship present, changes logical board marker
 // at location from 1 to 0, notifies player if he has already fired missile at location.
@@ -329,6 +332,17 @@ var checkIfDirectHit = (id) => {
 
 // Randomized CPU Attack after Player attacks.
 var cpuAttack = () => {
+  // Notifies player they lost
+  if(cpuHits == 15) {
+    alert("YOU LOSE!!!")
+    cpuHits++
+    gameStart = false;
+  }
+  // Stops CPU from attacking
+  if(cpuHits > 15 || !gameStart) {
+    clearInterval(cpuDirectHit);
+  }
+ 
   var continueAttack = true;
   while(continueAttack){
     var row = randomRow();
@@ -345,6 +359,7 @@ var cpuAttack = () => {
       if(attackVector == gameBoard[i][j] && playerBoardSelection[i][j] == 1) {
         playerBoardSelection[i][j] = 0;
         document.getElementById(attackVector).innerHTML = "<div class='ship-hit'></div>";
+        cpuHits++;
         return true;
       } else {
         document.getElementById(attackVector).innerHTML = "<div class='ship-miss'></div>";
@@ -353,9 +368,6 @@ var cpuAttack = () => {
   }
 }
 
-
-var playerHits = 0;
-var cpuHits = 0;
 //==============  Mouse Click Functions  =======================================
 //=============== ATTTAAAAAAACCCCKKKKK!!!!!! ===================
 // when player clicks on CPU board
@@ -372,23 +384,21 @@ var clickCpuBoard = (id) => {
    
     if (playerHits >= 15) {
       alert("gameover, You WIN!");
-    }
-
-    // CPU Attack ====
-    var cpuDirectHit = cpuAttack();
-
-    if(cpuDirectHit) {
-      cpuHits += 1;
-    }
-
-    if(cpuHits >= 15) {
-      alert("YOU LOSE!!")
+      gameStart = false;
     }
   } else {
     alert("Game has not started")
   }
-  
 }
+
+
+var startCpuAttack = () => {
+    // CPU Attack ====
+    //Starts a timed interval of attack from CPU
+    var cpuDirectHit = setInterval(cpuAttack, 400);
+}
+
+
 
 // Sets ship size to display when user clicks on ship selection
 var shipSize = 0;
@@ -479,14 +489,17 @@ var clickStartGame = () => {
     //clear the selection screen
     document.getElementById('remove-on-start').innerHTML =  "";
     document.getElementById('header').innerHTML = "";
-  
+    
     //generates the CPU's ships on logical board
     var battleShip = cpuBuildShip(3);
     var destroyer1 = cpuBuildShip(3);
     var destroyer2 = cpuBuildShip(3);
     var frigate = cpuBuildShip(3); 
     var patrolCoastal = cpuBuildShip(3);
-  
+
+    // initializes CPU attacks
+    startCpuAttack();
+
     // displays ships on visual board
     // cpuDisplayShip(battleShip);
     // cpuDisplayShip(destroyer1);
@@ -499,3 +512,4 @@ var clickStartGame = () => {
   }
  
 }
+
