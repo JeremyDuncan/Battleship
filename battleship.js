@@ -329,13 +329,13 @@ var checkIfDirectHit = (id) => {
 // Randomized CPU Attack after Player attacks.
 var cpuAttack = () => {
   // Notifies player they lost
-  if (cpuHits == 15) {
+  if (cpuHits == 18) {
     alert("YOU LOSE!!!");
     cpuHits++;
     gameStart = false;
   }
   // Stops CPU from attacking
-  if (cpuHits > 15 || !gameStart) {
+  if (cpuHits > 18 || !gameStart) {
     clearInterval(cpuDirectHit);
   }
 
@@ -380,7 +380,7 @@ var clickCpuBoard = (id) => {
       playerHits += 1;
     }
 
-    if (playerHits >= 15) {
+    if (playerHits >= 18) {
       alert("gameover, You WIN!");
       gameStart = false;
     }
@@ -429,8 +429,6 @@ var checkShipCount = () => {
   }
 };
 
-
-
 //========= Player Ship Count Functions ==========
 // Sets the limit for amount ships player can have
 var playerBattleship = 1;
@@ -441,41 +439,42 @@ var playerCoastalShip = 1;
 // Reduces available number of ships when player places one on board
 // Notifies player when all of a ship class has been placed on board.
 var isShipAvailable = (shipSize) => {
-    if(shipSize == 5) {
-      if (playerBattleship > 0) {
-        playerBattleship--;
-        document.getElementById("Battleship").innerHTML = " " + playerBattleship;
-        return true;
-      } else {
-        alert("All Battleships placed on board. Select a different ship.");
-      } 
-    } else if (shipSize == 4) {
-      if (playerDestroyer > 0) {
-        playerDestroyer--;
-        document.getElementById("Destroyer").innerHTML = " " + playerDestroyer;
-        return true;
-      } else {
-        alert("All Destroyers placed on board. Select a different ship.");
-      } 
-    } else if (shipSize == 3) {
-      if (playerFrigate > 0) {
-        playerFrigate--;
-        document.getElementById("Frigate").innerHTML = " " + playerFrigate;
-        return true;
-      } else {
-        alert("All Frigates placed on board. Select a different ship.");
-      } 
-    } else if (shipSize == 2) {
-      if (playerCoastalShip > 0) {
-        playerCoastalShip--;
-        document.getElementById("Patrolship").innerHTML = " " + playerCoastalShip;
-        return true;
-      } else {
-        alert("All Patrol Coastal Ships placed on board. Select a different ship.");
-      } 
+  if (shipSize == 5) {
+    if (playerBattleship > 0) {
+      playerBattleship--;
+      document.getElementById("Battleship").innerHTML = " " + playerBattleship;
+      return true;
+    } else {
+      alert("All Battleships placed on board. Select a different ship.");
     }
-}
-
+  } else if (shipSize == 4) {
+    if (playerDestroyer > 0) {
+      playerDestroyer--;
+      document.getElementById("Destroyer").innerHTML = " " + playerDestroyer;
+      return true;
+    } else {
+      alert("All Destroyers placed on board. Select a different ship.");
+    }
+  } else if (shipSize == 3) {
+    if (playerFrigate > 0) {
+      playerFrigate--;
+      document.getElementById("Frigate").innerHTML = " " + playerFrigate;
+      return true;
+    } else {
+      alert("All Frigates placed on board. Select a different ship.");
+    }
+  } else if (shipSize == 2) {
+    if (playerCoastalShip > 0) {
+      playerCoastalShip--;
+      document.getElementById("Patrolship").innerHTML = " " + playerCoastalShip;
+      return true;
+    } else {
+      alert(
+        "All Patrol Coastal Ships placed on board. Select a different ship."
+      );
+    }
+  }
+};
 
 // Click event that initializes selection functions
 var clickTarget = (id) => {
@@ -485,8 +484,8 @@ var clickTarget = (id) => {
   // if ships can be placed, player can place ship..
   if (playerSelect) {
     // returns true if ship is available
-    shipAvailable = isShipAvailable(shipSize)
-    if(shipAvailable){
+    shipAvailable = isShipAvailable(shipSize);
+    if (shipAvailable) {
       var playerShip = playerBuildShip(shipSize, id);
     }
   }
