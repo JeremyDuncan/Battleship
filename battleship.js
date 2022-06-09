@@ -66,7 +66,7 @@ var attackLog = [
   ["x", "x", "x", "x", "x", "x", "x", "x", "x", "x"],
 ];
 
-// ================ Randomizer Functions =======================================
+// ================ Randomizer Functions for Computer ==========================
 //creates random row number
 var randomRow = () => {
   row = Math.floor(Math.random() * 10);
@@ -430,6 +430,50 @@ var checkShipCount = () => {
   }
 };
 
+
+
+//========= Player Ship Count Functions ==========
+// Sets the limit for amount ships player can have
+var playerBattleship = 1;
+var playerDestroyer = 2;
+var playerFrigate = 1;
+var playerCoastalShip = 1;
+
+// Reduces available number of ships when player places one on board
+// Notifies player when all of a ship class has been placed on board.
+var isShipAvailable = (shipSize) => {
+    if(shipSize == 5) {
+      if (playerBattleship > 0) {
+        playerBattleship--;
+        return true;
+      } else {
+        alert("All Battleships placed on board. Select a different ship.");
+      } 
+    } else if (shipSize == 4) {
+      if (playerDestroyer > 0) {
+        playerDestroyer--;
+        return true;
+      } else {
+        alert("All Destroyers placed on board. Select a different ship.");
+      } 
+    } else if (shipSize == 3) {
+      if (playerFrigate > 0) {
+        playerFrigate--;
+        return true;
+      } else {
+        alert("All Frigates placed on board. Select a different ship.");
+      } 
+    } else if (shipSize == 2) {
+      if (playerCoastalShip > 0) {
+        playerCoastalShip--;
+        return true;
+      } else {
+        alert("All Patrol Coastal Ships placed on board. Select a different ship.");
+      } 
+    }
+}
+
+
 // Click event that initializes selection functions
 var clickTarget = (id) => {
   // checks if there are ships to place
@@ -437,7 +481,11 @@ var clickTarget = (id) => {
 
   // if ships can be placed, player can place ship..
   if (playerSelect) {
-    var playerShip = playerBuildShip(shipSize, id);
+    // returns true if ship is available
+    shipAvailable = isShipAvailable(shipSize)
+    if(shipAvailable){
+      var playerShip = playerBuildShip(shipSize, id);
+    }
   }
 
   //displays ship on board
@@ -445,32 +493,6 @@ var clickTarget = (id) => {
 
   // lower ship count by one
   reduceShipCount();
-};
-
-//========== Visual mouseover functions ========================================
-var hoverA = (cell) => {
-  console.log(cell);
-  if (!vert) {
-    for (var i = 0; i < shipSize; i++) {
-      document.getElementById(cell + i).innerHTML = "<div class='ship'></div>";
-    }
-  } else if (vert) {
-    for (var i = 0; i < shipSize * 100; i += 100) {
-      document.getElementById(cell + i).innerHTML = "<div class='ship'></div>";
-    }
-  }
-};
-
-var leave = (cell) => {
-  if (!vert) {
-    for (var i = 0; i < shipSize; i++) {
-      document.getElementById(cell + i).innerHTML = "  ";
-    }
-  } else if (vert) {
-    for (var i = 0; i < shipSize * 100; i += 100) {
-      document.getElementById(cell + i).innerHTML = "  ";
-    }
-  }
 };
 
 // ===================== Start Game ============================================
