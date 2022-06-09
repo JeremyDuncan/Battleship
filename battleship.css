@@ -244,22 +244,28 @@ footer {
 }
 
 .ship-select {
-  background-color: grey;
+  background-color: rgba(248, 248, 248, 0.691);
   width: 50px;
   height: 50px;
+  border-radius: 15px;
+  content:url(./images/pin.svg);
 }
 
 .ship-hit {
   width: 50px;
   height: 50px;
-  background-color: red;
-  content:url(./images/explosion.svg)
+  background-color: rgba(255, 0, 0, 0.268);
+  content:url(./images/explosion.svg);
+  border-radius: 15px;
+
 }
 
 .ship-miss {
   width: 50px;
   height: 50px;
-  background-color: rgb(115, 188, 236);
+  background-color: rgba(115, 187, 236, 0.112);
+  content:url(./images/splash-1.svg);
+  border-radius: 15px;
 }
 
 .square:hover {
