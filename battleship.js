@@ -272,7 +272,6 @@ var playerInBounds = (shipLength, row, column, vert) => {
   }
 };
 
-
 //========= Player Ship Count Functions ==========
 // Sets the limit for amount ships player can have
 var playerBattleship = 1;
@@ -343,12 +342,12 @@ var playerBuildShip = (shipLength, id) => {
 
     if (shipAvailable && isInBounds) {
       var shipCountGood = checkShipClassAvail(shipLength);
-      
-      if(shipCountGood){
+
+      if (shipCountGood) {
         //places ships on logical board
         markPlayerBoard(ship);
         return ship;
-      } 
+      }
     } else {
       alert("Ship out of bounds!");
     }
@@ -489,7 +488,7 @@ var clickTarget = (id) => {
   // if ships can be placed, player can place ship..
   if (playerSelect) {
     // returns true if ship is available
-      var playerShip = playerBuildShip(shipSize, id);
+    var playerShip = playerBuildShip(shipSize, id);
   }
 
   //displays ship on board
