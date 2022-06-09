@@ -3,7 +3,9 @@ body {
   background-color: darkgrey;
 
 }
-
+h1 {
+  margin: 0;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -35,7 +37,18 @@ header {
 }
 
 .selection {
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  gap: 5px;
+}
+.ship-selection1 {
+  display: flex;
+  gap: 4px;
+}
+.ship-selection2 {
+  display: flex;
+  gap: 4px;
 }
 
 .vertical-selection {
@@ -275,6 +288,33 @@ footer {
     flex-direction: column;
   }
 
+  .battleship {
+    display: flex;
+    width: 130px;
+    justify-content: space-between;
+    padding: 3px 10px 0px 10px;
+    }
+  .destroyer {
+    display: flex;
+    width: 130px;
+    justify-content: space-between;
+    padding: 3px 10px 0px 10px;
+
+  }
+  .frigate {
+    display: flex;
+    width: 130px;
+    justify-content: space-between;
+    padding: 3px 10px 0px 10px;
+
+  }
+  .patrol-coastal {
+    display: flex;
+    width: 130px;
+    justify-content: space-between;
+    padding: 3px 10px 0px 10px;
+
+  }
   .label {
     font-size: 10px;
     padding: 0px;
