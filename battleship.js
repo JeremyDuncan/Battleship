@@ -272,6 +272,54 @@ var playerInBounds = (shipLength, row, column, vert) => {
   }
 };
 
+
+//========= Player Ship Count Functions ==========
+// Sets the limit for amount ships player can have
+var playerBattleship = 1;
+var playerDestroyer = 2;
+var playerFrigate = 1;
+var playerCoastalShip = 1;
+
+// Reduces available number of ships when player places one on board
+// Notifies player when all of a ship class has been placed on board.
+var checkShipClassAvail = (shipSize) => {
+  if (shipSize == 5) {
+    if (playerBattleship > 0) {
+      playerBattleship--;
+      document.getElementById("Battleship").innerHTML = " " + playerBattleship;
+      return true;
+    } else {
+      alert("All Battleships placed on board. Select a different ship.");
+    }
+  } else if (shipSize == 4) {
+    if (playerDestroyer > 0) {
+      playerDestroyer--;
+      document.getElementById("Destroyer").innerHTML = " " + playerDestroyer;
+      return true;
+    } else {
+      alert("All Destroyers placed on board. Select a different ship.");
+    }
+  } else if (shipSize == 3) {
+    if (playerFrigate > 0) {
+      playerFrigate--;
+      document.getElementById("Frigate").innerHTML = " " + playerFrigate;
+      return true;
+    } else {
+      alert("All Frigates placed on board. Select a different ship.");
+    }
+  } else if (shipSize == 2) {
+    if (playerCoastalShip > 0) {
+      playerCoastalShip--;
+      document.getElementById("Patrolship").innerHTML = " " + playerCoastalShip;
+      return true;
+    } else {
+      alert(
+        "All Patrol Coastal Ships placed on board. Select a different ship."
+      );
+    }
+  }
+};
+
 // builds player's ship
 var playerBuildShip = (shipLength, id) => {
   if (shipLength > 0) {
@@ -294,9 +342,13 @@ var playerBuildShip = (shipLength, id) => {
     isInBounds = playerInBounds(shipLength, row, column, vert);
 
     if (shipAvailable && isInBounds) {
-      //places ships on board
-      markPlayerBoard(ship);
-      return ship;
+      var shipCountGood = checkShipClassAvail(shipLength);
+      
+      if(shipCountGood){
+        //places ships on logical board
+        markPlayerBoard(ship);
+        return ship;
+      } 
     } else {
       alert("Ship out of bounds!");
     }
@@ -429,53 +481,6 @@ var checkShipCount = () => {
   }
 };
 
-//========= Player Ship Count Functions ==========
-// Sets the limit for amount ships player can have
-var playerBattleship = 1;
-var playerDestroyer = 2;
-var playerFrigate = 1;
-var playerCoastalShip = 1;
-
-// Reduces available number of ships when player places one on board
-// Notifies player when all of a ship class has been placed on board.
-var isShipAvailable = (shipSize) => {
-  if (shipSize == 5) {
-    if (playerBattleship > 0) {
-      playerBattleship--;
-      document.getElementById("Battleship").innerHTML = " " + playerBattleship;
-      return true;
-    } else {
-      alert("All Battleships placed on board. Select a different ship.");
-    }
-  } else if (shipSize == 4) {
-    if (playerDestroyer > 0) {
-      playerDestroyer--;
-      document.getElementById("Destroyer").innerHTML = " " + playerDestroyer;
-      return true;
-    } else {
-      alert("All Destroyers placed on board. Select a different ship.");
-    }
-  } else if (shipSize == 3) {
-    if (playerFrigate > 0) {
-      playerFrigate--;
-      document.getElementById("Frigate").innerHTML = " " + playerFrigate;
-      return true;
-    } else {
-      alert("All Frigates placed on board. Select a different ship.");
-    }
-  } else if (shipSize == 2) {
-    if (playerCoastalShip > 0) {
-      playerCoastalShip--;
-      document.getElementById("Patrolship").innerHTML = " " + playerCoastalShip;
-      return true;
-    } else {
-      alert(
-        "All Patrol Coastal Ships placed on board. Select a different ship."
-      );
-    }
-  }
-};
-
 // Click event that initializes selection functions
 var clickTarget = (id) => {
   // checks if there are ships to place
@@ -484,10 +489,7 @@ var clickTarget = (id) => {
   // if ships can be placed, player can place ship..
   if (playerSelect) {
     // returns true if ship is available
-    shipAvailable = isShipAvailable(shipSize);
-    if (shipAvailable) {
       var playerShip = playerBuildShip(shipSize, id);
-    }
   }
 
   //displays ship on board
