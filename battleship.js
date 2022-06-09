@@ -1,5 +1,4 @@
 var gameStart = false;
-
 // =========== arrays to represent gameboard====================================
 var gameBoard = [
   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -445,6 +444,7 @@ var isShipAvailable = (shipSize) => {
     if(shipSize == 5) {
       if (playerBattleship > 0) {
         playerBattleship--;
+        document.getElementById("Battleship").innerHTML = " " + playerBattleship;
         return true;
       } else {
         alert("All Battleships placed on board. Select a different ship.");
@@ -452,6 +452,7 @@ var isShipAvailable = (shipSize) => {
     } else if (shipSize == 4) {
       if (playerDestroyer > 0) {
         playerDestroyer--;
+        document.getElementById("Destroyer").innerHTML = " " + playerDestroyer;
         return true;
       } else {
         alert("All Destroyers placed on board. Select a different ship.");
@@ -459,6 +460,7 @@ var isShipAvailable = (shipSize) => {
     } else if (shipSize == 3) {
       if (playerFrigate > 0) {
         playerFrigate--;
+        document.getElementById("Frigate").innerHTML = " " + playerFrigate;
         return true;
       } else {
         alert("All Frigates placed on board. Select a different ship.");
@@ -466,6 +468,7 @@ var isShipAvailable = (shipSize) => {
     } else if (shipSize == 2) {
       if (playerCoastalShip > 0) {
         playerCoastalShip--;
+        document.getElementById("Patrolship").innerHTML = " " + playerCoastalShip;
         return true;
       } else {
         alert("All Patrol Coastal Ships placed on board. Select a different ship.");
