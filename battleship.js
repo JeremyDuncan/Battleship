@@ -8,6 +8,8 @@ var automatedAttackRight = false;
 var initialCpuHit;
 var savedAIAttackVector;
 
+
+
 // =========== arrays to represent gameboard====================================
 var gameBoard = [
   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -74,6 +76,8 @@ var attackLog = [
   ["x", "x", "x", "x", "x", "x", "x", "x", "x", "x"],
 ];
 
+
+
 // ================ Randomizer Functions for Computer ==========================
 //creates random row number
 var randomRow = () => {
@@ -94,6 +98,8 @@ var randomVert = () => {
     return true;
   }
 };
+
+
 
 //========= Validation Functions ===============================================
 // Checks to see if ship can fit on board.
@@ -131,6 +137,8 @@ var inBounds = (shipLength, row, column, vert) => {
   }
 };
 
+
+
 //================= Ship Creation Functions ====================================
 //creates verticle ship
 var createVertShip = (shipLength, row, column) => {
@@ -162,6 +170,8 @@ var markBoard = (ship) => {
     }
   }
 };
+
+
 
 //============= CPU Ship building function =====================================
 //Calls other functions to make sure ship can be built
@@ -198,6 +208,8 @@ var cpuDisplayShip = (ship) => {
       "<div class='ship-select'></div>";
   }
 };
+
+
 
 // ========= Player Ship Building Functions ====================================
 // Displays data of CPU's created ship on webpage
@@ -627,6 +639,8 @@ var cpuAttack = () => {
   }
 };
 
+
+
 //==============  Mouse Click Functions  =======================================
 //=============== ATTTAAAAAAACCCCKKKKK!!!!!! ===================
 
@@ -710,6 +724,8 @@ var clickTarget = (id) => {
   // lower ship count by one
   reduceShipCount();
 };
+
+
 
 // ===================== Start Game ============================================
 
