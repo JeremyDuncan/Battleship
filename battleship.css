@@ -61,7 +61,7 @@ header {
 .vertical-selection {
   margin: auto;
   width: 30%;
-  height: 29px;
+  height: 25px;
   color: white;
   font-weight: bold;
   border: 3px solid black;
@@ -81,7 +81,7 @@ header {
 .horizontal-selection {
   margin: auto;
   width: 30%;
-  height: 29px;
+  height: 25px;
   color: white;
   font-weight: bold;
   border: 3px solid black;
@@ -101,7 +101,7 @@ header {
 .battleship {
   margin: auto;
   width: 30%;
-  height: 29px;
+  height: 25px;
   color: white;
   font-weight: bold;
   border: 3px solid black;
@@ -113,7 +113,7 @@ header {
 .destroyer {
   margin: auto;
   width: 30%;
-  height: 29px;
+  height: 25px;
   color: white;
   font-weight: bold;
   border: 3px solid black;
@@ -133,7 +133,7 @@ header {
 .frigate {
   margin: auto;
   width: 30%;
-  height: 29px;
+  height: 25px;
   color: white;
   font-weight: bold;
   border: 3px solid black;
@@ -153,7 +153,7 @@ header {
 .patrol-coastal {
   margin: auto;
   width: 30%;
-  height: 29px;
+  height: 25px;
   color: white;
   font-weight: bold;
   border: 3px solid black;
@@ -178,7 +178,7 @@ header {
   align-items: center;
   justify-content: center;
   width: 30%;
-  height: 29px;
+  height: 25px;
   color: white;
   font-weight: bold;
   border: 3px solid black;
@@ -378,28 +378,28 @@ footer {
 
   td {
     padding: 0px;
-    width: 29px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
   }
 
   .ship {
-    width: 29px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
   }
 
   .ship-select {
-    width: 29px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
   }
 
   .ship-hit {
-    width: 29px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
   }
 
   .ship-miss {
-    width: 29px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
   }
 
   .game-boards {
