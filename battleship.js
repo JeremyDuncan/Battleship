@@ -727,11 +727,11 @@ var clickStartGame = () => {
     }
 
     //generates the CPU's ships on logical board
-    var battleShip = cpuBuildShip(3);
-    var destroyer1 = cpuBuildShip(3);
-    var destroyer2 = cpuBuildShip(3);
+    var battleShip = cpuBuildShip(5);
+    var destroyer1 = cpuBuildShip(4);
+    var destroyer2 = cpuBuildShip(4);
     var frigate = cpuBuildShip(3);
-    var patrolCoastal = cpuBuildShip(3);
+    var patrolCoastal = cpuBuildShip(2);
 
     // initializes CPU attacks
 
