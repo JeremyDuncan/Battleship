@@ -411,7 +411,6 @@ var checkIfDirectHit = (id) => {
           "<div class='ship-miss'></div>";
         validHit = true;
       } else if (id == gameBoard[i][j] && playerAttackLog[i][j] == 0) {
-        alert(playerAttackLog[i][j]);
         validHit = false;
       }
     }
