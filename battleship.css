@@ -380,30 +380,30 @@ footer {
   td {
     padding: 0px;
     width: 25px;
-    height: 23px;
+    height: 24px;
   }
 
   .ship {
     width: 25px;
-    height: 23px;
+    height: 24px;
     margin: auto;
   }
 
   .ship-select {
     width: 25px;
-    height: 23px;
+    height: 24px;
     margin: auto;
   }
 
   .ship-hit {
     width: 25px;
-    height: 23px;
+    height: 24px;
     margin: auto;
   }
 
   .ship-miss {
     width: 25px;
-    height: 23px;
+    height: 24px;
     margin: auto;
 
   }
