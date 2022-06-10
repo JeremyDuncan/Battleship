@@ -1,4 +1,13 @@
 var gameStart = false;
+
+//AI Switches for smart attacks
+var automatedAttackUp = false;
+var automatedAttackDown = false;
+var automatedAttackLeft = false;
+var automatedAttackRight = false;
+var initialCpuHit;
+var savedAIAttackVector;
+
 // =========== arrays to represent gameboard====================================
 var gameBoard = [
   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -377,25 +386,204 @@ var checkIfDirectHit = (id) => {
   }
 };
 
-// Randomized CPU Attack after Player attacks.
-var cpuAttack = () => {
-  // Notifies player they lost
+var checkCpuHits = () => {
   if (cpuHits == 18) {
+    // Notifies player they lost
     alert("YOU LOSE!!!");
     cpuHits++;
     gameStart = false;
   }
-  // Stops CPU from attacking
-  if (cpuHits > 18 || !gameStart) {
-    clearInterval(cpuDirectHit);
+};
+
+var attackUp = (hitLocation) => {
+  checkCpuHits();
+  var target = hitLocation - 10;
+  if (target < 0 ) {
+    automatedAttackUp = false;
+    automatedAttackDown = true;
+    savedAIAttackVector = initialCpuHit;
+    aiAttackRoutine(savedAIAttackVector);
+  }
+   
+  for (var i = 0; i < gameBoard.length; i++) {
+    for (var j = 0; j < gameBoard[i].length; j++) {
+      if (target == gameBoard[i][j] && playerBoardSelection[i][j] == 1 && attackLog[i][j] == "x") {
+        playerBoardSelection[i][j] = 0;
+        attackLog[i][j] = 0;
+        document.getElementById(target).innerHTML =
+          "<div class='ship-hit'></div>";
+        cpuHits++;
+        savedAIAttackVector = target;
+        automatedAttackUp = true;
+        return;
+      } else if (target == gameBoard[i][j] && playerBoardSelection[i][j] == "x") {
+        document.getElementById(target).innerHTML =
+          "<div class='ship-miss'></div>";
+        automatedAttackUp = false;
+        automatedAttackDown = true;
+        savedAIAttackVector = initialCpuHit;
+     } else if (target == gameBoard[i][j] && attackLog[i][j] == 0) {
+        automatedAttackUp = false;
+        automatedAttackDown = true;
+        savedAIAttackVector = initialCpuHit;
+        aiAttackRoutine(savedAIAttackVector);
+     }
+    }
+  }
+}
+var attackDown = (hitLocation) => {
+  checkCpuHits();
+  var target = hitLocation + 10;
+  if (target > 99 ) {
+    automatedAttackDown = false;
+    automatedAttackLeft = true;
+    savedAIAttackVector = initialCpuHit;
+    aiAttackRoutine(savedAIAttackVector);
+    }
+
+  for (var i = 0; i < gameBoard.length; i++) {
+    for (var j = 0; j < gameBoard[i].length; j++) {
+      if (
+        target == gameBoard[i][j] &&
+        playerBoardSelection[i][j] == 1 &&
+        attackLog[i][j] == "x"
+      ) {
+        playerBoardSelection[i][j] = 0;
+        attackLog[i][j] = 0;
+        document.getElementById(target).innerHTML =
+          "<div class='ship-hit'></div>";
+        cpuHits++;
+        savedAIAttackVector = target;
+        automatedAttackDown = true;
+        return;
+      } else if (target == gameBoard[i][j] && playerBoardSelection[i][j] == "x") {
+        document.getElementById(target).innerHTML =
+          "<div class='ship-miss'></div>";
+        automatedAttackDown = false;
+        automatedAttackLeft = true;
+        savedAIAttackVector = initialCpuHit;
+      } else if (target == gameBoard[i][j] && attackLog[i][j] == 0) {
+        automatedAttackDown = false;
+        automatedAttackLeft = true;
+        savedAIAttackVector = initialCpuHit;
+        aiAttackRoutine(savedAIAttackVector);
+     }
+    }
+  }
+}
+var attackLeft = (hitLocation) => {
+  checkCpuHits();
+  var target = hitLocation - 1;
+  if (target < 0 ) {
+    automatedAttackLeft = false;
+    automatedAttackRight = true;
+    savedAIAttackVector = initialCpuHit;
+    aiAttackRoutine(savedAIAttackVector);
   }
 
-  var continueAttack = true;
-  while (continueAttack) {
+  for (var i = 0; i < gameBoard.length; i++) {
+    for (var j = 0; j < gameBoard[i].length; j++) {
+      if (
+        target == gameBoard[i][j] &&
+        playerBoardSelection[i][j] == 1 &&
+        attackLog[i][j] == "x"
+      ) {
+        playerBoardSelection[i][j] = 0;
+        attackLog[i][j] = 0;
+        document.getElementById(target).innerHTML =
+          "<div class='ship-hit'></div>";
+        cpuHits++;
+        savedAIAttackVector = target;
+        automatedAttackLeft = true;
+        return;
+      } else if (target == gameBoard[i][j] && playerBoardSelection[i][j] == "x") {
+        document.getElementById(target).innerHTML =
+          "<div class='ship-miss'></div>";
+        automatedAttackLeft = false;
+        automatedAttackRight = true;
+        savedAIAttackVector = initialCpuHit;
+      }  else if (target == gameBoard[i][j] && attackLog[i][j] == 0) {
+        automatedAttackLeft = false;
+        automatedAttackRight = true;
+        savedAIAttackVector = initialCpuHit;
+        aiAttackRoutine(savedAIAttackVector);
+     }
+    }
+  }
+}
+var attackRight = (hitLocation) => {
+  checkCpuHits();
+  var target = hitLocation + 1;
+  if (target > 99 ) {
+    automatedAttackRight = false;
+    initialCpuHit = 0;
+    savedAIAttackVector = 0;
+    aiAttackRoutine(savedAIAttackVector);
+  }
+  for (var i = 0; i < gameBoard.length; i++) {
+    for (var j = 0; j < gameBoard[i].length; j++) {
+      if (
+        target == gameBoard[i][j] &&
+        playerBoardSelection[i][j] == 1 &&
+        attackLog[i][j] == "x"
+      ) {
+        playerBoardSelection[i][j] = 0;
+        attackLog[i][j] = 0;
+        document.getElementById(target).innerHTML =
+          "<div class='ship-hit'></div>";
+        cpuHits++;
+        savedAIAttackVector = target;
+        automatedAttackRight = true;
+        return;
+      } else if (target == gameBoard[i][j] && playerBoardSelection[i][j] == "x"){
+        document.getElementById(target).innerHTML =
+          "<div class='ship-miss'></div>";
+        automatedAttackRight = false;
+        initialCpuHit = 0;
+        savedAIAttackVector = 0;
+      }  else if (target == gameBoard[i][j] && attackLog[i][j] == 0) {
+        automatedAttackRight = false;
+        initialCpuHit = 0;
+        savedAIAttackVector = 0;
+        aiAttackRoutine(savedAIAttackVector);
+        
+     }
+    }
+  }
+}
+
+var aiAttackRoutine = (aiAttackVector) => {
+  savedAIAttackVector = aiAttackVector;
+
+  var aiAttackUp = automatedAttackUp;
+  var aiAttackDown = automatedAttackDown;
+  var aiAttackLeft = automatedAttackLeft;
+  var aiAttackRight = automatedAttackRight;
+
+  if (aiAttackUp) {
+    attackUp(savedAIAttackVector);
+  }
+  if (aiAttackDown) {
+    attackDown(savedAIAttackVector);
+  }
+  if (aiAttackRight) {
+    attackRight(savedAIAttackVector);
+  }
+  if (aiAttackLeft) {
+    attackLeft(savedAIAttackVector);
+  }
+};
+
+// Randomized CPU Attack after Player attacks.
+var cpuAttack = () => {
+  checkCpuHits();
+
+  var randomizeAttack = true;
+  while (randomizeAttack) {
     var row = randomRow();
     var column = randomColumn();
     if (attackLog[row][column] == "x") {
-      continueAttack = false;
+      randomizeAttack = false;
     }
   }
 
@@ -408,6 +596,10 @@ var cpuAttack = () => {
         document.getElementById(attackVector).innerHTML =
           "<div class='ship-hit'></div>";
         cpuHits++;
+        automatedAttackUp = true;
+        savedAIAttackVector = attackVector;
+        initialCpuHit = attackVector;
+        alert("CPU ATTACK")
         return true;
       } else {
         document.getElementById(attackVector).innerHTML =
@@ -419,32 +611,54 @@ var cpuAttack = () => {
 
 //==============  Mouse Click Functions  =======================================
 //=============== ATTTAAAAAAACCCCKKKKK!!!!!! ===================
+
 // when player clicks on CPU board
 var clickCpuBoard = (id) => {
   if (gameStart) {
     var directHit = false;
-
     // PLAYER Attack ====
     directHit = checkIfDirectHit(id);
 
     if (directHit) {
       playerHits += 1;
     }
-
     if (playerHits >= 18) {
       alert("gameover, You WIN!");
       gameStart = false;
     }
+    // Continues where AI attacks left off if they started
+    if (automatedAttackUp || automatedAttackDown || automatedAttackLeft || automatedAttackRight) {
+      aiAttackRoutine(savedAIAttackVector);
+    } else {
+      cpuAttack();
+    }
   } else {
     alert("Game has not started");
   }
+  
 };
 
-var startCpuAttack = () => {
-  // CPU Attack ====
-  //Starts a timed interval of attack from CPU
-  var cpuDirectHit = setInterval(cpuAttack, 400);
-};
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Sets ship size to display when user clicks on ship selection
 var shipSize = 0;
@@ -487,7 +701,6 @@ var clickTarget = (id) => {
 
   // if ships can be placed, player can place ship..
   if (playerSelect) {
-    // returns true if ship is available
     var playerShip = playerBuildShip(shipSize, id);
   }
 
@@ -521,8 +734,9 @@ var clickStartGame = () => {
     var patrolCoastal = cpuBuildShip(3);
 
     // initializes CPU attacks
-    startCpuAttack();
+    
 
+    // Uncomment to see location of Computer's ships
     // displays ships on visual board
     // cpuDisplayShip(battleShip);
     // cpuDisplayShip(destroyer1);

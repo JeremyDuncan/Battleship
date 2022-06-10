@@ -370,4 +370,16 @@ footer {
     font-size: 15px;
   }
 
+  .ship-hit-test {
+    width: 29px;
+    height: 29px;
+    background-color: rgba(83, 231, 113, 0.268);
+    border-radius: 15px;
+  }
+  .ship-miss-test {
+    width: 29px;
+    height: 29px;
+    background-color: rgba(243, 244, 249, 0.112);
+    border-radius: 15px;
+  }
 }
