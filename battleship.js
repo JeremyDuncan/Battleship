@@ -393,7 +393,6 @@ var checkIfDirectHit = (id) => {
         validHit = true;
         return true;
       } else if (id == gameBoard[i][j] && cpuBoardSelection[i][j] == 0) {
-        alert("You already hit here!!!");
         validHit = false;
       } else if (
         id == gameBoard[i][j] &&
@@ -411,24 +410,13 @@ var checkIfDirectHit = (id) => {
   }
 };
 
-// else if ( target == gameBoard[i][j] && playerBoardSelection[i][j] == "x") {
-//   document.getElementById(target).innerHTML =
-//     "<div class='ship-miss'></div>";
-//   cpuAttackLog[i][j] = 0;
-
-// } else if (target == gameBoard[i][j] && cpuAttackLog[i][j] == 0) {
-//   automatedAttackUp = false;
-//   automatedAttackDown = true;
-//   savedAIAttackVector = initialCpuHit;
-//   aiAttackRoutine(savedAIAttackVector);
-// }
-
 var checkCpuHits = () => {
   if (cpuHits == 18) {
     // Notifies player they lost
-    alert("YOU LOSE!!!");
     cpuHits++;
     gameStart = false;
+    document.getElementById("announce").innerHTML =
+        "<span class='announcement'><br/>YOU LOSE!</span><span onclick='location.reload()' class='retry'>RETRY</span>";
   }
 };
 
@@ -678,8 +666,9 @@ var clickCpuBoard = (id) => {
       playerHits += 1;
     }
     if (playerHits >= 18) {
-      alert("gameover, You WIN!");
       gameStart = false;
+      document.getElementById("announce").innerHTML =
+        "<span class='announcement'><br/>YOU WIN!</span><span onclick='location.reload()' class='retry'>RETRY</span>";
     }
     if (validHit) {
       // Continues where AI attacks left off if they started
