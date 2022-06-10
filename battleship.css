@@ -403,6 +403,6 @@ footer {
   }
 
   .game-boards {
-    gap: 10px;
+    gap: 0px;
   }
 }
