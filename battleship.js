@@ -398,16 +398,20 @@ var checkCpuHits = () => {
 var attackUp = (hitLocation) => {
   checkCpuHits();
   var target = hitLocation - 10;
-  if (target < 0 ) {
+  if (target < 0) {
     automatedAttackUp = false;
     automatedAttackDown = true;
     savedAIAttackVector = initialCpuHit;
     aiAttackRoutine(savedAIAttackVector);
   }
-   
+
   for (var i = 0; i < gameBoard.length; i++) {
     for (var j = 0; j < gameBoard[i].length; j++) {
-      if (target == gameBoard[i][j] && playerBoardSelection[i][j] == 1 && attackLog[i][j] == "x") {
+      if (
+        target == gameBoard[i][j] &&
+        playerBoardSelection[i][j] == 1 &&
+        attackLog[i][j] == "x"
+      ) {
         playerBoardSelection[i][j] = 0;
         attackLog[i][j] = 0;
         document.getElementById(target).innerHTML =
@@ -416,30 +420,34 @@ var attackUp = (hitLocation) => {
         savedAIAttackVector = target;
         automatedAttackUp = true;
         return;
-      } else if (target == gameBoard[i][j] && playerBoardSelection[i][j] == "x") {
+      } else if (
+        target == gameBoard[i][j] &&
+        playerBoardSelection[i][j] == "x"
+      ) {
         document.getElementById(target).innerHTML =
           "<div class='ship-miss'></div>";
+        attackLog[i][j] = 0;
         automatedAttackUp = false;
         automatedAttackDown = true;
         savedAIAttackVector = initialCpuHit;
-     } else if (target == gameBoard[i][j] && attackLog[i][j] == 0) {
+      } else if (target == gameBoard[i][j] && attackLog[i][j] == 0) {
         automatedAttackUp = false;
         automatedAttackDown = true;
         savedAIAttackVector = initialCpuHit;
         aiAttackRoutine(savedAIAttackVector);
-     }
+      }
     }
   }
-}
+};
 var attackDown = (hitLocation) => {
   checkCpuHits();
   var target = hitLocation + 10;
-  if (target > 99 ) {
+  if (target > 99) {
     automatedAttackDown = false;
     automatedAttackLeft = true;
     savedAIAttackVector = initialCpuHit;
     aiAttackRoutine(savedAIAttackVector);
-    }
+  }
 
   for (var i = 0; i < gameBoard.length; i++) {
     for (var j = 0; j < gameBoard[i].length; j++) {
@@ -456,9 +464,13 @@ var attackDown = (hitLocation) => {
         savedAIAttackVector = target;
         automatedAttackDown = true;
         return;
-      } else if (target == gameBoard[i][j] && playerBoardSelection[i][j] == "x") {
+      } else if (
+        target == gameBoard[i][j] &&
+        playerBoardSelection[i][j] == "x"
+      ) {
         document.getElementById(target).innerHTML =
           "<div class='ship-miss'></div>";
+        attackLog[i][j] = 0;
         automatedAttackDown = false;
         automatedAttackLeft = true;
         savedAIAttackVector = initialCpuHit;
@@ -467,14 +479,14 @@ var attackDown = (hitLocation) => {
         automatedAttackLeft = true;
         savedAIAttackVector = initialCpuHit;
         aiAttackRoutine(savedAIAttackVector);
-     }
+      }
     }
   }
-}
+};
 var attackLeft = (hitLocation) => {
   checkCpuHits();
   var target = hitLocation - 1;
-  if (target < 0 ) {
+  if (target < 0) {
     automatedAttackLeft = false;
     automatedAttackRight = true;
     savedAIAttackVector = initialCpuHit;
@@ -496,25 +508,29 @@ var attackLeft = (hitLocation) => {
         savedAIAttackVector = target;
         automatedAttackLeft = true;
         return;
-      } else if (target == gameBoard[i][j] && playerBoardSelection[i][j] == "x") {
+      } else if (
+        target == gameBoard[i][j] &&
+        playerBoardSelection[i][j] == "x"
+      ) {
         document.getElementById(target).innerHTML =
           "<div class='ship-miss'></div>";
+        attackLog[i][j] = 0;
         automatedAttackLeft = false;
         automatedAttackRight = true;
         savedAIAttackVector = initialCpuHit;
-      }  else if (target == gameBoard[i][j] && attackLog[i][j] == 0) {
+      } else if (target == gameBoard[i][j] && attackLog[i][j] == 0) {
         automatedAttackLeft = false;
         automatedAttackRight = true;
         savedAIAttackVector = initialCpuHit;
         aiAttackRoutine(savedAIAttackVector);
-     }
+      }
     }
   }
-}
+};
 var attackRight = (hitLocation) => {
   checkCpuHits();
   var target = hitLocation + 1;
-  if (target > 99 ) {
+  if (target > 99) {
     automatedAttackRight = false;
     initialCpuHit = 0;
     savedAIAttackVector = 0;
@@ -535,22 +551,25 @@ var attackRight = (hitLocation) => {
         savedAIAttackVector = target;
         automatedAttackRight = true;
         return;
-      } else if (target == gameBoard[i][j] && playerBoardSelection[i][j] == "x"){
+      } else if (
+        target == gameBoard[i][j] &&
+        playerBoardSelection[i][j] == "x"
+      ) {
         document.getElementById(target).innerHTML =
           "<div class='ship-miss'></div>";
+        attackLog[i][j] = 0;
         automatedAttackRight = false;
         initialCpuHit = 0;
         savedAIAttackVector = 0;
-      }  else if (target == gameBoard[i][j] && attackLog[i][j] == 0) {
+      } else if (target == gameBoard[i][j] && attackLog[i][j] == 0) {
         automatedAttackRight = false;
         initialCpuHit = 0;
         savedAIAttackVector = 0;
         aiAttackRoutine(savedAIAttackVector);
-        
-     }
+      }
     }
   }
-}
+};
 
 var aiAttackRoutine = (aiAttackVector) => {
   savedAIAttackVector = aiAttackVector;
@@ -599,7 +618,7 @@ var cpuAttack = () => {
         automatedAttackUp = true;
         savedAIAttackVector = attackVector;
         initialCpuHit = attackVector;
-        alert("CPU ATTACK")
+        alert("CPU ATTACK");
         return true;
       } else {
         document.getElementById(attackVector).innerHTML =
@@ -627,7 +646,12 @@ var clickCpuBoard = (id) => {
       gameStart = false;
     }
     // Continues where AI attacks left off if they started
-    if (automatedAttackUp || automatedAttackDown || automatedAttackLeft || automatedAttackRight) {
+    if (
+      automatedAttackUp ||
+      automatedAttackDown ||
+      automatedAttackLeft ||
+      automatedAttackRight
+    ) {
       aiAttackRoutine(savedAIAttackVector);
     } else {
       cpuAttack();
@@ -635,30 +659,7 @@ var clickCpuBoard = (id) => {
   } else {
     alert("Game has not started");
   }
-  
 };
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Sets ship size to display when user clicks on ship selection
 var shipSize = 0;
@@ -734,7 +735,6 @@ var clickStartGame = () => {
     var patrolCoastal = cpuBuildShip(3);
 
     // initializes CPU attacks
-    
 
     // Uncomment to see location of Computer's ships
     // displays ships on visual board
