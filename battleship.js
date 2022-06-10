@@ -618,7 +618,6 @@ var cpuAttack = () => {
         automatedAttackUp = true;
         savedAIAttackVector = attackVector;
         initialCpuHit = attackVector;
-        alert("CPU ATTACK");
         return true;
       } else {
         document.getElementById(attackVector).innerHTML =
