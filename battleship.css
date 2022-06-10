@@ -3,14 +3,20 @@ body {
   background-color: darkgrey;
 
 }
+
 h1 {
   margin: 0;
 }
+
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 10px;
+  min-height: 900px;
+  width: 100%;
 }
+
 table {
   margin: 0 auto;
   justify-content: center;
@@ -41,10 +47,12 @@ header {
   text-align: center;
   gap: 5px;
 }
+
 .ship-selection1 {
   display: flex;
   gap: 4px;
 }
+
 .ship-selection2 {
   display: flex;
   gap: 4px;
@@ -200,6 +208,10 @@ td {
 .label {
   text-align: center;
   width: 5px;
+  padding: 0px;
+  margin: 0px;
+  width: 0px;
+  height: 0px;
 }
 
 .player-board {
@@ -248,14 +260,14 @@ footer {
   width: 50px;
   height: 50px;
   border-radius: 15px;
-  content:url(./images/pin.svg);
+  content: url(./images/pin.svg);
 }
 
 .ship-hit {
   width: 50px;
   height: 50px;
   background-color: rgba(255, 0, 0, 0.268);
-  content:url(./images/explosion.svg);
+  content: url(./images/explosion.svg);
   border-radius: 15px;
 
 }
@@ -264,7 +276,7 @@ footer {
   width: 50px;
   height: 50px;
   background-color: rgba(115, 187, 236, 0.112);
-  content:url(./images/splash-1.svg);
+  content: url(./images/splash-1.svg);
   border-radius: 15px;
 }
 
@@ -293,30 +305,45 @@ footer {
   body {
     margin: 2px;
   }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 400px;
+    width: 100%;
+  }
+
   .game-boards {
     flex-direction: column;
     height: 100%;
     width: 100%;
   }
+
   table {
     margin: 0px;
     width: 100%;
   }
+
   .player-board {
     width: 100%;
     font-size: 15px;
 
   }
+
   .computer-board {
     width: 100%;
     font-size: 15px;
   }
+
   .battleship {
     display: flex;
     width: 130px;
     justify-content: space-between;
     padding: 3px 10px 0px 10px;
-    }
+  }
+
   .destroyer {
     display: flex;
     width: 130px;
@@ -324,6 +351,7 @@ footer {
     padding: 3px 10px 0px 10px;
 
   }
+
   .frigate {
     display: flex;
     width: 130px;
@@ -331,6 +359,7 @@ footer {
     padding: 3px 10px 0px 10px;
 
   }
+
   .patrol-coastal {
     display: flex;
     width: 130px;
@@ -338,6 +367,7 @@ footer {
     padding: 3px 10px 0px 10px;
 
   }
+
   .label {
     font-size: 15px;
     padding: 0px;
@@ -349,42 +379,30 @@ footer {
   td {
     padding: 0px;
     width: 29px;
-    height: 29px;
+    height: 30px;
   }
 
   .ship {
     width: 29px;
-    height: 29px;
+    height: 30px;
   }
 
   .ship-select {
     width: 29px;
-    height: 29px;
+    height: 30px;
   }
 
   .ship-hit {
     width: 29px;
-    height: 29px;
+    height: 30px;
   }
 
   .ship-miss {
     width: 29px;
-    height: 29px;
+    height: 30px;
   }
 
   .game-boards {
-    gap: 5px;
-  }
-  .ship-hit-test {
-    width: 29px;
-    height: 29px;
-    background-color: rgba(83, 231, 113, 0.268);
-    border-radius: 15px;
-  }
-  .ship-miss-test {
-    width: 29px;
-    height: 29px;
-    background-color: rgba(243, 244, 249, 0.112);
-    border-radius: 15px;
+    gap: 10px;
   }
 }

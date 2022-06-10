@@ -8,8 +8,6 @@ var automatedAttackRight = false;
 var initialCpuHit;
 var savedAIAttackVector;
 
-
-
 // =========== arrays to represent gameboard====================================
 var gameBoard = [
   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -110,8 +108,6 @@ var randomVert = () => {
   }
 };
 
-
-
 //========= Validation Functions ===============================================
 // Checks to see if ship can fit on board.
 var checkBoard = (ship) => {
@@ -148,8 +144,6 @@ var inBounds = (shipLength, row, column, vert) => {
   }
 };
 
-
-
 //================= Ship Creation Functions ====================================
 //creates verticle ship
 var createVertShip = (shipLength, row, column) => {
@@ -181,8 +175,6 @@ var markBoard = (ship) => {
     }
   }
 };
-
-
 
 //============= CPU Ship building function =====================================
 //Calls other functions to make sure ship can be built
@@ -219,8 +211,6 @@ var cpuDisplayShip = (ship) => {
       "<div class='ship-select'></div>";
   }
 };
-
-
 
 // ========= Player Ship Building Functions ====================================
 // Displays data of CPU's created ship on webpage
@@ -381,7 +371,7 @@ var playerBuildShip = (shipLength, id) => {
         return ship;
       }
     } else {
-      if(!gameStart){
+      if (!gameStart) {
         alert("Ship out of bounds!");
       }
     }
@@ -405,7 +395,11 @@ var checkIfDirectHit = (id) => {
       } else if (id == gameBoard[i][j] && cpuBoardSelection[i][j] == 0) {
         alert("You already hit here!!!");
         validHit = false;
-      } else if (id == gameBoard[i][j] && cpuBoardSelection[i][j] == "x" && playerAttackLog[i][j] == "x" ) {
+      } else if (
+        id == gameBoard[i][j] &&
+        cpuBoardSelection[i][j] == "x" &&
+        playerAttackLog[i][j] == "x"
+      ) {
         playerAttackLog[i][j] = 0;
         document.getElementById("A" + id).innerHTML =
           "<div class='ship-miss'></div>";
@@ -416,7 +410,6 @@ var checkIfDirectHit = (id) => {
     }
   }
 };
-
 
 // else if ( target == gameBoard[i][j] && playerBoardSelection[i][j] == "x") {
 //   document.getElementById(target).innerHTML =
@@ -671,8 +664,6 @@ var cpuAttack = () => {
   }
 };
 
-
-
 //==============  Mouse Click Functions  =======================================
 //=============== ATTTAAAAAAACCCCKKKKK!!!!!! ===================
 
@@ -690,7 +681,7 @@ var clickCpuBoard = (id) => {
       alert("gameover, You WIN!");
       gameStart = false;
     }
-      if(validHit){
+    if (validHit) {
       // Continues where AI attacks left off if they started
       if (
         automatedAttackUp ||
@@ -758,8 +749,6 @@ var clickTarget = (id) => {
   // lower ship count by one
   reduceShipCount();
 };
-
-
 
 // ===================== Start Game ============================================
 
