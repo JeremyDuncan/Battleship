@@ -324,16 +324,16 @@ footer {
   table {
     margin: 0px;
     width: 100%;
+    height: 100%;
   }
 
   .player-board {
-    width: 100%;
+
     font-size: 15px;
 
   }
 
   .computer-board {
-    width: 100%;
     font-size: 15px;
   }
 
