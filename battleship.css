@@ -290,10 +290,27 @@ footer {
 
 /* ==== Responsive CSS Styles ==== */
 @media (max-width: 550px) {
+  body {
+    margin: 2px;
+  }
   .game-boards {
     flex-direction: column;
+    height: 100%;
+    width: 100%;
   }
+  table {
+    margin: 0px;
+    width: 100%;
+  }
+  .player-board {
+    width: 100%;
+    font-size: 15px;
 
+  }
+  .computer-board {
+    width: 100%;
+    font-size: 15px;
+  }
   .battleship {
     display: flex;
     width: 130px;
@@ -358,18 +375,6 @@ footer {
   .game-boards {
     gap: 5px;
   }
-
-  .player-board {
-    width: 100%;
-    font-size: 15px;
-
-  }
-
-  .computer-board {
-    width: 100%;
-    font-size: 15px;
-  }
-
   .ship-hit-test {
     width: 29px;
     height: 29px;
