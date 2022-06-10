@@ -381,7 +381,9 @@ var playerBuildShip = (shipLength, id) => {
         return ship;
       }
     } else {
-      alert("Ship out of bounds!");
+      if(!gameStart){
+        alert("Ship out of bounds!");
+      }
     }
   }
 };
