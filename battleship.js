@@ -36,3 +36,20 @@ Object.entries(bridge).forEach(([key, handler]) => {
 });
 
 window.battleshipGame = game;
+
+const playerSquares = document.querySelectorAll(".player-board .square");
+playerSquares.forEach((square) => {
+  square.addEventListener("mouseenter", () => {
+    game.previewPlayerPlacement(Number(square.id));
+  });
+  square.addEventListener("mouseleave", () => {
+    game.clearPlacementPreview();
+  });
+});
+
+const playerBoardTable = document.querySelector(".player-board table");
+if (playerBoardTable) {
+  playerBoardTable.addEventListener("mouseleave", () => {
+    game.clearPlacementPreview();
+  });
+}

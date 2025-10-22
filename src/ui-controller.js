@@ -6,6 +6,7 @@ export class UIController {
     this.selectionWrapper = doc.getElementById("remove-on-start");
     this.headerEl = doc.getElementById("header");
     this.containerMain = doc.querySelector(".container-main");
+    this.previewedCells = new Map();
   }
 
   setMessage(text) {
@@ -26,14 +27,11 @@ export class UIController {
   }
 
   prepareForBattle() {
+    this.clearPlacementPreview();
     if (this.selectionWrapper) {
       this.selectionWrapper.remove();
       this.selectionWrapper = null;
     }
-    const labels = this.doc.getElementsByClassName("label");
-    Array.from(labels).forEach((label) => {
-      label.textContent = "";
-    });
     if (this.containerMain) {
       this.containerMain.classList.add("battle-mode");
     }
@@ -57,6 +55,36 @@ export class UIController {
     if (this.announcementEl) {
       this.announcementEl.innerHTML = "";
     }
+  }
+
+  showPlacementPreview(cells, isValid) {
+    this.clearPlacementPreview();
+    if (!cells || !cells.length) {
+      return;
+    }
+
+    const className = isValid ? "preview-valid" : "preview-invalid";
+    cells.forEach((cell) => {
+      const el = this.getSquareElement("player", cell);
+      if (!el) {
+        return;
+      }
+      el.classList.add("preview-active", className);
+      this.previewedCells.set(cell, className);
+    });
+  }
+
+  clearPlacementPreview() {
+    if (!this.previewedCells || !this.previewedCells.size) {
+      return;
+    }
+    this.previewedCells.forEach((className, cell) => {
+      const el = this.getSquareElement("player", cell);
+      if (el) {
+        el.classList.remove("preview-active", "preview-valid", "preview-invalid");
+      }
+    });
+    this.previewedCells.clear();
   }
 
   renderShip(board, cells) {

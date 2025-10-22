@@ -319,6 +319,28 @@ td {
   display: none;
 }
 
+.square.preview-active::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 12px;
+  pointer-events: none;
+  transition: all 0.15s ease;
+  z-index: 3;
+}
+
+.square.preview-valid::before {
+  background: rgba(98, 246, 255, 0.2);
+  border: 1px dashed rgba(98, 246, 255, 0.6);
+  box-shadow: 0 0 12px rgba(98, 246, 255, 0.35);
+}
+
+.square.preview-invalid::before {
+  background: rgba(255, 120, 120, 0.18);
+  border: 1px dashed rgba(255, 120, 120, 0.72);
+  box-shadow: 0 0 12px rgba(255, 120, 120, 0.3);
+}
+
 .ship-select,
 .ship-hit,
 .ship-miss {

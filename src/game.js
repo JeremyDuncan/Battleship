@@ -35,6 +35,7 @@ export class BattleshipGame {
 
     this.ui.clearMessage();
     this.ui.clearAnnouncement();
+    this.ui.clearPlacementPreview();
     this.shipInventory.forEach((ship) => {
       this.ui.updateShipCount(ship.counterId, ship.remaining);
     });
@@ -45,6 +46,7 @@ export class BattleshipGame {
   }
 
   setOrientation(orientation) {
+    this.clearPlacementPreview();
     this.orientation = orientation;
     const orientationLabel =
       orientation === ORIENTATION.VERTICAL ? "Vertical" : "Horizontal";
@@ -52,6 +54,7 @@ export class BattleshipGame {
   }
 
   selectShip(length) {
+    this.clearPlacementPreview();
     const ship = this.getShipSpec(length);
     if (!ship) {
       this.ui.setMessage("Unknown ship selection.");
@@ -67,6 +70,41 @@ export class BattleshipGame {
     this.ui.setMessage(
       `${ship.name} selected. ${ship.remaining} remaining.`
     );
+  }
+
+  previewPlayerPlacement(index) {
+    if (this.gameStarted) {
+      this.clearPlacementPreview();
+      return;
+    }
+
+    if (!this.selectedShipLength) {
+      this.clearPlacementPreview();
+      return;
+    }
+
+    const ship = this.getShipSpec(this.selectedShipLength);
+    if (!ship || ship.remaining <= 0) {
+      this.clearPlacementPreview();
+      return;
+    }
+
+    const preview = this.playerBoard.previewPlacement(
+      this.selectedShipLength,
+      index,
+      this.orientation
+    );
+
+    if (!preview.cells.length) {
+      this.clearPlacementPreview();
+      return;
+    }
+
+    this.ui.showPlacementPreview(preview.cells, preview.isValid);
+  }
+
+  clearPlacementPreview() {
+    this.ui.clearPlacementPreview();
   }
 
   placePlayerShip(index) {
@@ -106,10 +144,14 @@ export class BattleshipGame {
     ship.remaining -= 1;
     this.shipsToPlace -= 1;
     this.ui.updateShipCount(ship.counterId, ship.remaining);
+    this.ui.clearPlacementPreview();
     this.ui.renderShip("player", result.cells);
     this.ui.setMessage(
       `${ship.name} placed. ${ship.remaining} remaining.`
     );
+    if (ship.remaining === 0) {
+      this.selectedShipLength = 0;
+    }
   }
 
   canStartGame() {
@@ -129,6 +171,7 @@ export class BattleshipGame {
 
     this.deployCpuFleet();
     this.gameStarted = true;
+    this.clearPlacementPreview();
     this.ui.prepareForBattle();
     this.ui.setMessage("Game started. Attack the computer's board!");
   }

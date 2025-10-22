@@ -75,6 +75,31 @@ export class Board {
     return { success: true, cells, ship };
   }
 
+  previewPlacement(length, startIndex, orientation) {
+    const { row, col } = this.indexToCoord(startIndex);
+    const cells = [];
+
+    for (let i = 0; i < length; i++) {
+      const targetRow =
+        orientation === ORIENTATION.VERTICAL ? row + i : row;
+      const targetCol =
+        orientation === ORIENTATION.HORIZONTAL ? col + i : col;
+      if (this.isWithinGrid(targetRow, targetCol)) {
+        cells.push(this.coordToIndex(targetRow, targetCol));
+      }
+    }
+
+    const inBounds = this.isInBounds(length, row, col, orientation);
+    const overlaps = cells.some((cell) => this.occupiedCells.has(cell));
+
+    return {
+      cells,
+      inBounds,
+      overlaps,
+      isValid: inBounds && !overlaps && cells.length === length,
+    };
+  }
+
   hasBeenAttacked(index) {
     return this.attackedCells.has(index);
   }
