@@ -1,4 +1,4 @@
-// import { BattleshipGame } from "./src/game.js";
+//  import { BattleshipGame } from "./src/game.js";
 // import { UIController } from "./src/ui-controller.js";
 // import { ORIENTATION } from "./src/constants.js";
 //
