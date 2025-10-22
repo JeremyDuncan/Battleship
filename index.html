@@ -7,7 +7,10 @@
   <meta
   name="description"
   content="Battleship game that was created by Jeremy Duncan using HTML, CSS, and Javascript">
-  <link async href="battleship.css" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="battleship.css"/>
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
   <title>Battleship Game</title>
 </head>
@@ -335,7 +338,7 @@
 
     <footer>
       <div class="copyright">
-      Jeremy Duncan &copy; 2022
+      Jeremy Duncan &copy; <span id="current-year"></span>
       </div>
       <div class="info-link">
         <a href="https://github.com/JeremyDuncan">Jeremy's GitHub</a> 
@@ -344,5 +347,5 @@
     
   </div>
 </body>
-<script type="text/javascript" src="battleship.js"></script>
+<script type="module" src="battleship.js"></script>
 </html>
