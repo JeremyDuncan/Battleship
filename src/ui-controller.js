@@ -81,7 +81,8 @@ export class UIController {
     this.previewedCells.forEach((className, cell) => {
       const el = this.getSquareElement("player", cell);
       if (el) {
-        el.classList.remove("preview-active", "preview-valid", "preview-invalid");
+        // el.classList.remove("preview-active", "preview-valid", "preview-invalid");
+        el.classList.remove("preview-active", className);
       }
     });
     this.previewedCells.clear();

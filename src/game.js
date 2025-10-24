@@ -195,7 +195,7 @@ export class BattleshipGame {
       this.ui.renderMiss("cpu", index);
     }
 
-    if (this.playerHits >= this.totalShipCells || this.cpuBoard.allShipsSunk()) {
+    if (this.cpuBoard.allShipsSunk()) {
       this.gameStarted = false;
       this.ui.showVictory();
       this.ui.setMessage("Congratulations! You sank the fleet.");
@@ -234,7 +234,7 @@ export class BattleshipGame {
 
     this.ai.handleAttackResult(target, result);
 
-    if (this.cpuHits >= this.totalShipCells || this.playerBoard.allShipsSunk()) {
+    if (this.playerBoard.allShipsSunk()) {
       this.gameStarted = false;
       this.ui.showDefeat();
       this.ui.setMessage("The computer sank your fleet. Try again!");
